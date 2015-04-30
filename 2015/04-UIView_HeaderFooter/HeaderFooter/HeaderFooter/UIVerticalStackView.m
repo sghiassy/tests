@@ -36,7 +36,7 @@
                                                                  options:0
                                                                  metrics:nil
                                                                    views:@{@"view":view}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[view(height)]"
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]"
                                                                  options:0
                                                                  metrics:@{@"height":@(view.frame.size.height)}
                                                                    views:@{@"view":view}]];
