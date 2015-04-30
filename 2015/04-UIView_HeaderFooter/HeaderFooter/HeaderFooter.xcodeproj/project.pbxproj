@@ -14,6 +14,9 @@
 		AAE97B7D1AF2E44700E62D6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE97B7C1AF2E44700E62D6F /* Images.xcassets */; };
 		AAE97B801AF2E44700E62D6F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE97B7E1AF2E44700E62D6F /* LaunchScreen.xib */; };
 		AAE97B8C1AF2E44700E62D6F /* HeaderFooterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE97B8B1AF2E44700E62D6F /* HeaderFooterTests.m */; };
+		AAE97B971AF2E46C00E62D6F /* UIHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE97B961AF2E46C00E62D6F /* UIHeaderFooterView.m */; };
+		AAE97B9A1AF2E49000E62D6F /* UIVerticalStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE97B991AF2E49000E62D6F /* UIVerticalStackView.m */; };
+		AAE97B9D1AF2E51400E62D6F /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE97B9C1AF2E51400E62D6F /* TestView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		AAE97B851AF2E44700E62D6F /* HeaderFooterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeaderFooterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE97B8A1AF2E44700E62D6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAE97B8B1AF2E44700E62D6F /* HeaderFooterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderFooterTests.m; sourceTree = "<group>"; };
+		AAE97B951AF2E46C00E62D6F /* UIHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHeaderFooterView.h; sourceTree = "<group>"; };
+		AAE97B961AF2E46C00E62D6F /* UIHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHeaderFooterView.m; sourceTree = "<group>"; };
+		AAE97B981AF2E49000E62D6F /* UIVerticalStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIVerticalStackView.h; sourceTree = "<group>"; };
+		AAE97B991AF2E49000E62D6F /* UIVerticalStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIVerticalStackView.m; sourceTree = "<group>"; };
+		AAE97B9B1AF2E51400E62D6F /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		AAE97B9C1AF2E51400E62D6F /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +94,12 @@
 				AAE97B741AF2E44700E62D6F /* AppDelegate.m */,
 				AAE97B761AF2E44700E62D6F /* ViewController.h */,
 				AAE97B771AF2E44700E62D6F /* ViewController.m */,
+				AAE97B9B1AF2E51400E62D6F /* TestView.h */,
+				AAE97B9C1AF2E51400E62D6F /* TestView.m */,
+				AAE97B951AF2E46C00E62D6F /* UIHeaderFooterView.h */,
+				AAE97B961AF2E46C00E62D6F /* UIHeaderFooterView.m */,
+				AAE97B981AF2E49000E62D6F /* UIVerticalStackView.h */,
+				AAE97B991AF2E49000E62D6F /* UIVerticalStackView.m */,
 				AAE97B791AF2E44700E62D6F /* Main.storyboard */,
 				AAE97B7C1AF2E44700E62D6F /* Images.xcassets */,
 				AAE97B7E1AF2E44700E62D6F /* LaunchScreen.xib */,
@@ -219,9 +234,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE97B971AF2E46C00E62D6F /* UIHeaderFooterView.m in Sources */,
 				AAE97B781AF2E44700E62D6F /* ViewController.m in Sources */,
 				AAE97B751AF2E44700E62D6F /* AppDelegate.m in Sources */,
 				AAE97B721AF2E44700E62D6F /* main.m in Sources */,
+				AAE97B9D1AF2E51400E62D6F /* TestView.m in Sources */,
+				AAE97B9A1AF2E49000E62D6F /* UIVerticalStackView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
