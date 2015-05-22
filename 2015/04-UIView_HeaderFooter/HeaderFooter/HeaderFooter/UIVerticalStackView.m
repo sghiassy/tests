@@ -30,17 +30,47 @@
 
 - (void)addView:(UIView *)view {
     [self.views addObject:view];
+
+    BOOL isFirstItem = self.views.count == 1;
+
+    if (isFirstItem) {
+        [self addView:view underView:nil];
+    } else {
+        UIView *aboveView = (UIView *)self.views[self.views.count - 2];
+        [self addView:view underView:aboveView];
+    }
+
+    [self invalidateIntrinsicContentSize];
+}
+
+- (void)addView:(UIView *)view underView:(UIView *)aboveView {
     [self addSubview:view];
     view.translatesAutoresizingMaskIntoConstraints = NO;
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
                                                                  options:0
                                                                  metrics:nil
                                                                    views:@{@"view":view}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]"
-                                                                 options:0
-                                                                 metrics:@{@"height":@(view.frame.size.height)}
-                                                                   views:@{@"view":view}]];
-    [self invalidateIntrinsicContentSize];
+
+
+    [UIView animateWithDuration:2.0 animations:^{
+        if (aboveView == nil) {
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(height)]"
+                                                                         options:0
+                                                                         metrics:@{@"height":@(view.frame.size.height)}
+                                                                           views:@{@"view":view}]];
+        } else {
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[aboveView][view(height)]"
+                                                                         options:0
+                                                                         metrics:@{@"height":@(view.frame.size.height)}
+                                                                           views:@{@"view":view,
+                                                                                   @"aboveView":aboveView}]];
+        }
+    } completion:^(BOOL finished) {
+        //        if (onComplete) {
+        //            onComplete(finished);
+        //        }
+    }];
 }
 
 - (CGSize)intrinsicContentSize {
