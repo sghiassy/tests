@@ -8,12 +8,28 @@ var styles = React.StyleSheet.create({
     backgroundColor: 'white',
     fontSize: 30,
     margin: 80
+  },
+  container: {
+    flex: 1
   }
 });
 
+class HelloWorld extends React.Component {
+  render() {
+    // return React.createElement(React.Text, {style: styles.text}, "Hello World");
+    return <React.Text style={styles.text}>Hello World (again)</React.Text>
+  }
+}
+
 class PropertyFinderApp extends React.Component {
   render() {
-    return React.createElement(React.Text, {style: styles.text}, "Hello World");
+    return (
+      <React.NavigatorIOS
+        style={styles.container}
+        initialRoute={{title: 'Property Finder',
+                       component: HelloWorld,
+      }}/>
+    );
   }
 }
 
