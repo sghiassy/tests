@@ -14,7 +14,7 @@ var {
 } = React;
 
 var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}}
+  {title: 'The Movie', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}}
 ];
 
 var AwesomeProject = React.createClass({
