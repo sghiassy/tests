@@ -74,6 +74,7 @@ function urlForQueryAndPage(key, value, pageNumber) {
       action: 'search_listings',
       page: pageNumber
   };
+
   data[key] = value;
 
   var querystring = Object.keys(data)
@@ -135,6 +136,20 @@ class SearchPage extends Component {
         }));
   }
 
+  onLocationPressed() {
+    navigator.geolocation.getCurrentPosition(
+      location => {
+        var search = location.coords.latitude + ',' + location.coords.longitude;
+        this.setState({searchString: search});
+        var query = urlForQueryAndPage('centre_point', search, 1);
+        this._executeQuery(query);
+      },
+      error => {
+        this.setState({message: "There was a problem with obtaining your location " + error});
+      }
+    );
+  }
+
   render() {
     var spinner = this.state.isLoading ?
       ( <ActivityIndicatorIOS hidden='true' size='large'/> ) :
@@ -161,8 +176,11 @@ class SearchPage extends Component {
             </Text>
           </TouchableHighlight>
         </View>
-        <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Location</Text>
+        <TouchableHighlight 
+          style={styles.button} 
+          underlayColor='#99d9f4' 
+          onPress={this.onLocationPressed.bind(this)}>
+            <Text style={styles.buttonText}>Location</Text>
         </TouchableHighlight>
         <Image source={require('image!house')} style={styles.image}/>
         <Text style={styles.description}>{this.state.message}</Text>
