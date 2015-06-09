@@ -74,11 +74,11 @@ function urlForQueryAndPage(key, value, pageNumber) {
       page: pageNumber
   };
   data[key] = value;
- 
+
   var querystring = Object.keys(data)
     .map(key => key + '=' + encodeURIComponent(data[key]))
     .join('&');
- 
+
   return 'http://api.nestoria.co.uk/api?' + querystring;
 };
 
@@ -88,7 +88,8 @@ class SearchPage extends Component {
 
     this.state = {
       searchString: 'london',
-      isLoading: false
+      isLoading: false,
+      message: ''
     };
   }
 
@@ -101,9 +102,26 @@ class SearchPage extends Component {
     this.setState({isLoading: true});
   }
 
+  _handleResponse(response) {
+    this.setState({isLoading: false, message: ''});
+    if (response.application_response_code.substr(0,1) === '1') {
+      console.log('Properties found: ' + response.listings.length);
+    } else {
+      this.setState({message: 'Location not recognized; please try again.'});
+    }
+  }
+
   onSearchPressed() {
     var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
     this._executeQuery(query);
+    fetch(query)
+      .then(response => response.json())
+      .then(json => this._handleResponse(json.response))
+      .catch(error =>
+        this.setState({
+          isLoading: false,
+          message: 'Something bad happened ' + error
+        }));
   }
 
   render() {
@@ -136,6 +154,7 @@ class SearchPage extends Component {
           <Text style={styles.buttonText}>Location</Text>
         </TouchableHighlight>
         <Image source={require('image!house')} style={styles.image}/>
+        <Text style={styles.description}>{this.state.message}</Text>
         {spinner}
       </View>
     )
