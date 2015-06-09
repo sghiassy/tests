@@ -65,6 +65,18 @@ var styles = StyleSheet.create({
 });
 
 class SearchPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchString: 'london'
+    };
+  }
+
+  onSearchTextChanged(event) {
+    this.setState({searchString: event.nativeEvent.text});
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -75,7 +87,11 @@ class SearchPage extends Component {
           Search by place-name, postcode or search near your location.
         </Text>
         <View style={styles.flowRight}>
-          <TextInput style={styles.searchInput} placeholder='Search via name or postcode'/>
+          <TextInput 
+            style={styles.searchInput} 
+            value={this.state.searchString} 
+            placeholder='Search via name or postcode'
+            onChange={this.onSearchTextChanged.bind(this)} />
           <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
             <Text style={styles.buttonText}>Go</Text>
           </TouchableHighlight>
