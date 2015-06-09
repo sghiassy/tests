@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var SearchResults = require('./SearchResults');
 
 var {
   StyleSheet,
@@ -104,11 +105,21 @@ class SearchPage extends Component {
 
   _handleResponse(response) {
     this.setState({isLoading: false, message: ''});
-    if (response.application_response_code.substr(0,1) === '1') {
+
+    var validResponse = response.application_response_code.substr(0,1) === '1';
+
+    if (validResponse) {
       console.log('Properties found: ' + response.listings.length);
     } else {
       this.setState({message: 'Location not recognized; please try again.'});
     }
+
+    this.props.navigator.push({
+      title: 'Results',
+      component: SearchResults,
+      passProps: {listings: response.listings}
+    });
+
   }
 
   onSearchPressed() {
