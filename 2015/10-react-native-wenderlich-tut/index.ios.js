@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var SearchPage = require('./SearchPage');
 
 var styles = React.StyleSheet.create({
   text: {
@@ -14,21 +15,17 @@ var styles = React.StyleSheet.create({
   }
 });
 
-class HelloWorld extends React.Component {
-  render() {
-    // return React.createElement(React.Text, {style: styles.text}, "Hello World");
-    return <React.Text style={styles.text}>Hello World (again)</React.Text>
-  }
-}
-
 class PropertyFinderApp extends React.Component {
   render() {
     return (
       <React.NavigatorIOS
         style={styles.container}
-        initialRoute={{title: 'Property Finder',
-                       component: HelloWorld,
-      }}/>
+        initialRoute={
+          {
+            title: 'Property Finder',
+            component: SearchPage,
+          }
+        }/>
     );
   }
 }
