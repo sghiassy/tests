@@ -14,57 +14,6 @@ var {
   Component
 } = React;
 
-var styles = StyleSheet.create({
-  description: {
-    marginBottom: 20,
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565'
-  },
-  container: {
-    padding: 30,
-    marginTop: 65,
-    alignItems: 'center'
-  },
-  flowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 36,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  searchInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flex: 4,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC'
-  },
-  image: {
-    width: 217,
-    height: 138
-  }
-});
-
 function urlForQueryAndPage(key, value, pageNumber) {
   var data = {
       country: 'uk',
@@ -126,7 +75,12 @@ class SearchPage extends Component {
   onSearchPressed() {
     var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
     this._executeQuery(query);
-    fetch(query)
+    fetch(query, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
       .then(response => response.json())
       .then(json => this._handleResponse(json.response))
       .catch(error =>
@@ -163,22 +117,22 @@ class SearchPage extends Component {
           Search by place-name, postcode or search near your location.
         </Text>
         <View style={styles.flowRight}>
-          <TextInput 
-            style={styles.searchInput} 
-            value={this.state.searchString} 
+          <TextInput
+            style={styles.searchInput}
+            value={this.state.searchString}
             placeholder='Search via name or postcode'
             onChange={this.onSearchTextChanged.bind(this)} />
           <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
-            <Text 
+            <Text
               style={styles.buttonText}
               onPress={this.onSearchPressed.bind(this)}>
                 Go
             </Text>
           </TouchableHighlight>
         </View>
-        <TouchableHighlight 
-          style={styles.button} 
-          underlayColor='#99d9f4' 
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor='#99d9f4'
           onPress={this.onLocationPressed.bind(this)}>
             <Text style={styles.buttonText}>Location</Text>
         </TouchableHighlight>
@@ -189,5 +143,56 @@ class SearchPage extends Component {
     )
   }
 }
+
+var styles = StyleSheet.create({
+  description: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#656565'
+  },
+  container: {
+    padding: 30,
+    marginTop: 65,
+    alignItems: 'center'
+  },
+  flowRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  button: {
+    height: 36,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  searchInput: {
+    height: 36,
+    padding: 4,
+    marginRight: 5,
+    flex: 4,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#48BBEC',
+    borderRadius: 8,
+    color: '#48BBEC'
+  },
+  image: {
+    width: 217,
+    height: 138
+  }
+});
 
 module.exports = SearchPage;
