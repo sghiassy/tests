@@ -12,7 +12,7 @@ var {
   View,
 } = React;
 
-var Placeup = React.createClass({
+var TestyMcTest = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('Placeup', () => Placeup);
+AppRegistry.registerComponent('TestyMcTest', () => TestyMcTest);
