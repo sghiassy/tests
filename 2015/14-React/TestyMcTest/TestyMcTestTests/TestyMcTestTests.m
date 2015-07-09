@@ -14,8 +14,8 @@
 #import "RCTRedBox.h"
 #import "RCTRootView.h"
 
-#define TIMEOUT_SECONDS 240
-#define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
+#define TIMEOUT_SECONDS 20
+#define TEXT_TO_LOOK_FOR @"Shaheen"
 
 @interface TestyMcTestTests : XCTestCase
 
