@@ -46,11 +46,11 @@ var GeolocationExample = React.createClass({
       <View>
         <Text>
           <Text style={styles.title}>Initial position: </Text>
-          {JSON.stringify(this.state.initialPosition)}
+          {JSON.stringify(this.state.initialPosition.coords)}
         </Text>
         <Text>
           <Text style={styles.title}>Current position: </Text>
-          {JSON.stringify(this.state.lastPosition)}
+          {JSON.stringify(this.state.lastPosition.coords)}
         </Text>
       </View>
     );
