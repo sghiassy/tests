@@ -1,0 +1,28 @@
+// web project build configuration
+project(':com.placeup.web') {
+    apply plugin: 'java'
+    apply plugin: 'war'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'javax.servlet:servlet-api:2.5'
+        testCompile 'junit:junit:4.+'
+    }
+
+    sourceSets {
+        integrationTest {
+            java.srcDir file('src/test.integration/java')
+            resources.srcDir file('src/test.integration/resources')
+        }
+    }
+
+    task integrationTest(type: Test) {
+        testClassesDir = sourceSets.integrationTest.output.classesDir
+        classpath = sourceSets.integrationTest.runtimeClasspath
+    }
+
+    check.dependsOn integrationTest
+}
