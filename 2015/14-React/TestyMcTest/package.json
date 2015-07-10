@@ -7,7 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "react-native": "^0.6.0"
+    "react-native": "^0.6.0",
+    "react-tween-state": "^0.1.3"
   },
   "devDependencies": {
     "babel-core": "5.4.7",
@@ -17,12 +18,14 @@
   },
   "jest": {
     "scriptPreprocessor": "jest-support/preprocessor.js",
-    "unmockedModulePathPatterns": [
-      "react",
-      "babel-core"
-    ],
+    "setupEnvScriptFile": "jest-support/env.js",
     "testFileExtensions": [
       "js"
+    ],
+    "unmockedModulePathPatterns": [
+      "source-map",
+      "react",
+      "babel-core"
     ]
   }
 }

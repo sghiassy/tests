@@ -1,22 +1,22 @@
-// jest.dontMock('../index');
+// jest.dontMock('../ProgressHUD');
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
-// var ProgressHUD = require('../index');
+var Header = require('../Header');
+// var ProgressHUD = require('../ProgressHUD');
 
-describe('ProgressHUD', function() {
+describe('Header', function() {
   it('should pass for true', function() {
+    // console.log('ProgressHUD', ProgressHUD);
     expect(2).toEqual(2);
   });
-//   it('should be a ReactElement', function() {
-//     var is_element = TestUtils.isElement(
-//       /*jshint ignore:start */
-//       <ProgressHUD isVisible = {false}/>
-//       /*jshint ignore:end */
-//     );
-//
-//     expect(is_element).toBe(true);
-//   });
+
+  // it('should be a ReactElement', function() {
+  //   var is_element = TestUtils.isElement(React.createElement(Header, null));
+  //
+  //   expect(is_element).toBe(true);
+  // });
+
 //
 //   it('should not be dismissible by default', function() {
 //     expect(ProgressHUD.defaultProps.isDismissible).toBe(false);
