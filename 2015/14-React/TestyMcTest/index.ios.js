@@ -7,7 +7,7 @@ var Header = require('./src/Header');
 var TestyMcTest = React.createClass({
   render: function() {
     return (
-      <View style={styles.container}>
+      <View title={"Shaheen"} testID="shaheen" description={"Shaheen"} style={styles.container}>
         <Header />
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
