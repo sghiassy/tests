@@ -11,7 +11,6 @@ import UIKit
 class RainforestCardCell: UICollectionViewCell {
     var featureImageSizeOptional: CGSize?
     var placeholderLayer: CALayer!
-    var backgroundImageNode: ASImageNode?
     var contentLayer: CALayer?
     var containerNode: ASDisplayNode?
 
@@ -47,10 +46,10 @@ class RainforestCardCell: UICollectionViewCell {
     //MARK: Cell Reuse
     override func prepareForReuse() {
         super.prepareForReuse()
-        backgroundImageNode?.preventOrCancelDisplay = true
+        containerNode?.recursiveSetPreventOrCancelDisplay(true)
         contentLayer?.removeFromSuperlayer()
         contentLayer = nil
-        backgroundImageNode = nil
+        containerNode = nil
     }
 
     func configureCellDisplayWithCardInfo(cardInfo: RainforestCardInfo) {
