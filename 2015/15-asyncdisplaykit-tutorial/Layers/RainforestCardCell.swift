@@ -13,6 +13,7 @@ class RainforestCardCell: UICollectionViewCell {
     var placeholderLayer: CALayer!
     var backgroundImageNode: ASImageNode?
     var contentLayer: CALayer?
+    var containerNode: ASDisplayNode?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -99,13 +100,25 @@ class RainforestCardCell: UICollectionViewCell {
 
         }
 
+        //MARK: Container Node Creation Section
+        let containerNode = ASDisplayNode()
+        containerNode.layerBacked = true
+        containerNode.shouldRasterizeDescendants = true
+        containerNode.borderColor = UIColor(hue: 0, saturation: 0, brightness: 0.85, alpha: 0.2).CGColor
+        containerNode.borderWidth = 1
+
+        //MARK: Node Hierarchy Section
+        containerNode.addSubnode(backgroundImageNode)
+
         //MARK: Node Layout Section
-        backgroundImageNode.frame = FrameCalculator.frameForContainer(featureImageSize: image.size)
+        containerNode.frame = FrameCalculator.frameForContainer(featureImageSize: image.size)
+        backgroundImageNode.frame = FrameCalculator.frameForBackgroundImage(
+            containerBounds: containerNode.bounds)
 
         //MARK: Node Layer and Wrap Up Section
-        self.contentView.layer.addSublayer(backgroundImageNode.layer)
-        self.backgroundImageNode = backgroundImageNode
-        self.contentLayer = backgroundImageNode.layer
+        self.contentView.layer.addSublayer(containerNode.layer)
+        self.contentLayer = containerNode.layer
+        self.containerNode = containerNode
     }
 
 }
