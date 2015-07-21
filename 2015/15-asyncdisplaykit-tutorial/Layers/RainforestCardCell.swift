@@ -146,4 +146,22 @@ class RainforestCardCell: UICollectionViewCell {
         self.containerNode = containerNode
     }
 
+    func nodeConstructionOperationWithCardInfo(cardInfo: RainforestCardInfo, image: UIImage) -> NSOperation {
+        let nodeConstructionOperation = NSBlockOperation()
+
+        nodeConstructionOperation.addExecutionBlock {
+            [weak self, unowned nodeConstructionOperation] in
+
+            if nodeConstructionOperation.cancelled {
+                return
+            }
+
+            if let strongSelf = self {
+                // TODO: Add node hierarchy construction
+            }
+        }
+        
+        return nodeConstructionOperation
+    }
+
 }
