@@ -116,16 +116,23 @@ class RainforestCardCell: UICollectionViewCell {
         titleTextNode.backgroundColor = UIColor.clearColor()
         titleTextNode.attributedString = NSAttributedString.attributedStringForTitleText(cardInfo.name)
 
+        let descriptionTextNode = ASTextNode()
+        descriptionTextNode.layerBacked = true
+        descriptionTextNode.backgroundColor = UIColor.clearColor()
+        descriptionTextNode.attributedString = NSAttributedString.attributedStringForDescriptionText(cardInfo.description)
+
         //MARK: Node Hierarchy Section
         containerNode.addSubnode(backgroundImageNode)
         containerNode.addSubnode(featureImageNode)
         containerNode.addSubnode(titleTextNode)
+        containerNode.addSubnode(descriptionTextNode)
 
         //MARK: Node Layout Section
         containerNode.frame = FrameCalculator.frameForContainer(featureImageSize: image.size)
         backgroundImageNode.frame = FrameCalculator.frameForBackgroundImage(containerBounds: containerNode.bounds)
         featureImageNode.frame = FrameCalculator.frameForFeatureImage(featureImageSize: image.size, containerFrameWidth: containerNode.frame.size.width)
         titleTextNode.frame = FrameCalculator.frameForTitleText(containerBounds: containerNode.bounds, featureImageFrame: featureImageNode.frame)
+        descriptionTextNode.frame = FrameCalculator.frameForDescriptionText(containerBounds: containerNode.bounds, featureImageFrame: featureImageNode.frame)
 
         //MARK: Node Layer and Wrap Up Section
         self.contentView.layer.addSublayer(containerNode.layer)
