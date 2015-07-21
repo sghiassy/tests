@@ -106,13 +106,22 @@ class RainforestCardCell: UICollectionViewCell {
         containerNode.borderColor = UIColor(hue: 0, saturation: 0, brightness: 0.85, alpha: 0.2).CGColor
         containerNode.borderWidth = 1
 
+        let featureImageNode = ASImageNode()
+        featureImageNode.layerBacked = true
+        featureImageNode.contentMode = .ScaleAspectFit
+        featureImageNode.image = image
+
         //MARK: Node Hierarchy Section
         containerNode.addSubnode(backgroundImageNode)
+        containerNode.addSubnode(featureImageNode)
 
         //MARK: Node Layout Section
         containerNode.frame = FrameCalculator.frameForContainer(featureImageSize: image.size)
         backgroundImageNode.frame = FrameCalculator.frameForBackgroundImage(
             containerBounds: containerNode.bounds)
+        featureImageNode.frame = FrameCalculator.frameForFeatureImage(
+            featureImageSize: image.size,
+            containerFrameWidth: containerNode.frame.size.width)
 
         //MARK: Node Layer and Wrap Up Section
         self.contentView.layer.addSublayer(containerNode.layer)
