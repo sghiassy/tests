@@ -121,9 +121,14 @@ class RainforestCardCell: UICollectionViewCell {
         descriptionTextNode.backgroundColor = UIColor.clearColor()
         descriptionTextNode.attributedString = NSAttributedString.attributedStringForDescriptionText(cardInfo.description)
 
+        let gradientNode = GradientNode()
+        gradientNode.opaque = false
+        gradientNode.layerBacked = true
+
         //MARK: Node Hierarchy Section
         containerNode.addSubnode(backgroundImageNode)
         containerNode.addSubnode(featureImageNode)
+        containerNode.addSubnode(gradientNode)
         containerNode.addSubnode(titleTextNode)
         containerNode.addSubnode(descriptionTextNode)
 
@@ -133,6 +138,7 @@ class RainforestCardCell: UICollectionViewCell {
         featureImageNode.frame = FrameCalculator.frameForFeatureImage(featureImageSize: image.size, containerFrameWidth: containerNode.frame.size.width)
         titleTextNode.frame = FrameCalculator.frameForTitleText(containerBounds: containerNode.bounds, featureImageFrame: featureImageNode.frame)
         descriptionTextNode.frame = FrameCalculator.frameForDescriptionText(containerBounds: containerNode.bounds, featureImageFrame: featureImageNode.frame)
+        gradientNode.frame = FrameCalculator.frameForGradient(featureImageFrame: featureImageNode.frame)
 
         //MARK: Node Layer and Wrap Up Section
         self.contentView.layer.addSublayer(containerNode.layer)
