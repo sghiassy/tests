@@ -8,12 +8,6 @@
 
 #import "AdamBox.h"
 
-//@interface AdamBox ()
-//
-//@property (nonatomic, strong) UIColor *textColor;
-//
-//@end
-
 @implementation AdamBox
 
 RCT_EXPORT_MODULE()
