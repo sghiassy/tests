@@ -12,6 +12,7 @@ var {
   View,
 } = React;
 var ShaheenSlider = require('./ShaheenSliderIOS.js');
+var ShaheenBox = require('./ShaheenBox.js');
 
 var Custom = React.createClass({
   render: function() {
