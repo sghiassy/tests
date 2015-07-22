@@ -12,6 +12,7 @@ var {
   View,
 } = React;
 var ShaheenSlider = require('./ShaheenSliderIOS.js');
+var AdamBox = require('./AdamBox');
 
 var Custom = React.createClass({
   render: function() {
@@ -30,6 +31,7 @@ var Custom = React.createClass({
           value={8}
           minimumValue={0}
           maximumValue={10} />
+        <AdamBox style={{width: 100, height: 200, borderWidth: 2}}/>
       </View>
     );
   }
