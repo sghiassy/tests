@@ -42,6 +42,7 @@ ln -s /usr/bin/nodejs /usr/bin/node
 
 npm install -g express
 
+
 # On SSH login, change to the /vagrant (aka Vagrant synced folder) directory
 echo "cd /vagrant" >> /home/vagrant/.bashrc
 
