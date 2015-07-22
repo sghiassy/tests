@@ -9,13 +9,22 @@ var Text = require('Text');
 // var ReactIOSViewAttributes = require('ReactIOSViewAttributes');
 var StyleSheet = require('StyleSheet');
 var View = require('View');
-// var createReactIOSNativeComponentClass = require('createReactIOSNativeComponentClass');
-var merge = require('merge');
+var requireNativeComponent = require('requireNativeComponent');
 
 var AdamBox = React.createClass({
+  mixins: [NativeMethodsMixin],
+
+  propTypes: {
+    /**
+     * Used to style and layout the `Slider`.  See `StyleSheet.js` and
+     * `ViewStylePropTypes.js` for more info.
+     */
+    style: View.propTypes.style
+  },
+
   render: function() {
     return (
-      <Text>Shaheen</Text>
+      <ShaheenSlider style={{width: 200, height: 100}} />
     );
   }
 });
@@ -28,10 +37,12 @@ var AdamBox = React.createClass({
 //   // minimumTrackTintColor: true,
 //   // maximumTrackTintColor: true,
 // };
-//
+
 // var ShaheenSlider = createReactIOSNativeComponentClass({
 //   validAttributes: validAttributes,
 //   uiViewClassName: 'AdamBox',
 // });
+
+var ShaheenSlider = requireNativeComponent('AdamBox', AdamBox);
 
 module.exports = AdamBox;
