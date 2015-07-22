@@ -11,11 +11,14 @@ var {
   Text,
   View,
 } = React;
-var ShaheenSlider = require('./ShaheenSliderIOS.js');
-var AdamBox = require('./AdamBox');
+var AdamBox = require('./AdamBox.js');
+console.log('AdamBox', AdamBox);
 
 var Custom = React.createClass({
+
   render: function() {
+    var adamBox = (<AdamBox style={{width:100, height: 100, borderWidth: 2}}/>);
+    debugger;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -24,14 +27,8 @@ var Custom = React.createClass({
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
-        <ShaheenSlider
-          style={{height: 100, width: 200, borderWidth: 2}}
-          minimumTrackTintColor={'red'}
-          maximumTrackTintColor={'purple'}
-          value={8}
-          minimumValue={0}
-          maximumValue={10} />
-        <AdamBox style={{width: 100, height: 200, borderWidth: 2}}/>
+        {adamBox}
+
       </View>
     );
   }

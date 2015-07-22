@@ -11,19 +11,21 @@
  */
 'use strict';
 
-var NativeMethodsMixin = require('NativeMethodsMixin');
-var PropTypes = require('ReactPropTypes');
+// var NativeMethodsMixin = require('NativeMethodsMixin');
+// var PropTypes = require('ReactPropTypes');
 var React = require('React');
-var ReactIOSViewAttributes = require('ReactIOSViewAttributes');
+var {Text, View} = React;
+// var ReactIOSViewAttributes = require('ReactIOSViewAttributes');
 var StyleSheet = require('StyleSheet');
-var View = require('View');
-var createReactIOSNativeComponentClass = require('createReactIOSNativeComponentClass');
-var merge = require('merge');
+// var View = require('View');
+// var createReactIOSNativeComponentClass = require('createReactIOSNativeComponentClass');
+// var merge = require('merge');
 
 var AdamBox = React.createClass({
   render: function() {
+    debugger;
     return (
-      <Text>Shaheen</Text>
+      <View style={{backgroundColor: 'red', width: 200, height: 200}}></View>
     );
   }
 });
