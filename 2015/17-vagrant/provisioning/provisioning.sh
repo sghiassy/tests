@@ -40,6 +40,8 @@ apt-get install -y nodejs
 # Create a symlink to use the command 'node' instead of 'nodejs'
 ln -s /usr/bin/nodejs /usr/bin/node
 
+npm install -g express
+
 # On SSH login, change to the /vagrant (aka Vagrant synced folder) directory
 echo "cd /vagrant" >> /home/vagrant/.bashrc
 
