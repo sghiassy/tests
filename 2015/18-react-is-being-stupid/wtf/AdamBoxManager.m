@@ -1,14 +1,14 @@
 //
-//  AdamBox.m
+//  AdamBoxManager.m
 //  wtf
 //
 //  Created by Shaheen Ghiassy on 7/22/15.
 //  Copyright (c) 2015 Facebook. All rights reserved.
 //
 
-#import "AdamBox.h"
+#import "AdamBoxManager.h"
 
-@implementation AdamBox
+@implementation AdamBoxManager
 
 RCT_EXPORT_MODULE()
 
