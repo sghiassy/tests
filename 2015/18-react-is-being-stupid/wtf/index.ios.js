@@ -7,6 +7,7 @@
 var React = require('react-native');
 var { AppRegistry, StyleSheet, Text, View } = React;
 var AdamBox = require('./AdamBox.js');
+var ShaheenSlider = require('./ShaheenSliderIOS.js');
 
 var wtf = React.createClass({
   render: function() {
@@ -23,6 +24,7 @@ var wtf = React.createClass({
           Cmd+D or shake for dev menu
         </Text>
         <AdamBox />
+        <ShaheenSlider style={{width: 200, height: 100}} />
       </View>
     );
   }
