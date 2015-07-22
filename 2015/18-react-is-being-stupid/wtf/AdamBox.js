@@ -31,20 +31,6 @@ var AdamBox = React.createClass({
   }
 });
 
-// var validAttributes = {
-//   ...ReactIOSViewAttributes.UIView,
-//   // value: true,
-//   // minimumValue: true,
-//   // maximumValue: true,
-//   // minimumTrackTintColor: true,
-//   // maximumTrackTintColor: true,
-// };
-
-// var ShaheenSlider = createReactIOSNativeComponentClass({
-//   validAttributes: validAttributes,
-//   uiViewClassName: 'AdamBox',
-// });
-
 var ShaheenSlider = requireNativeComponent('AdamBox', AdamBox);
 
 module.exports = AdamBox;
