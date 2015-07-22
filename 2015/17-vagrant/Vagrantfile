@@ -12,9 +12,7 @@ Vagrant.configure("2") do |config|
     api_config.vm.network "private_network", ip: "192.168.13.10"
 
     # Open up Ports
-    api_config.vm.network :forwarded_port, host: 1337, guest: 1337  # SailsJS
-    api_config.vm.network :forwarded_port, host: 5858, guest: 5858  # Node-inspector
-    api_config.vm.network :forwarded_port, host: 8080, guest: 8080  # Node-inspector
+    api_config.vm.network :forwarded_port, host: 3000, guest: 3000  # Node-inspector
 
     # Use password loggin for VM instead private key pair
     api_config.ssh.username = 'vagrant'
