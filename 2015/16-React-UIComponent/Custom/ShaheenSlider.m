@@ -15,32 +15,26 @@
 
 RCT_EXPORT_MODULE()
 
-- (UIView *)view
-{
+- (UIView *)view {
   UISlider *slider = [[UISlider alloc] init];
   [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
   [slider addTarget:self action:@selector(sliderTouchEnd:) forControlEvents:UIControlEventTouchUpInside];
+
   return slider;
 }
 
-- (void)sliderValueChanged:(UISlider *)sender
-{
-  NSDictionary *event = @{
-                          @"target": sender.reactTag,
+- (void)sliderValueChanged:(UISlider *)sender {
+  NSDictionary *event = @{@"target": sender.reactTag,
                           @"value": @(sender.value),
-                          @"continuous": @YES,
-                          };
+                          @"continuous": @YES};
 
   [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
 }
 
-- (void)sliderTouchEnd:(UISlider *)sender
-{
-  NSDictionary *event = @{
-                          @"target": sender.reactTag,
+- (void)sliderTouchEnd:(UISlider *)sender {
+  NSDictionary *event = @{@"target": sender.reactTag,
                           @"value": @(sender.value),
-                          @"continuous": @NO,
-                          };
+                          @"continuous": @NO};
 
   [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
 }

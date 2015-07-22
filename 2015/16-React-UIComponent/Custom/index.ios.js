@@ -23,7 +23,13 @@ var Custom = React.createClass({
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
-        <ShaheenSlider style={{height: 100, width: 200, borderWidth: 2}}/>
+        <ShaheenSlider
+          style={{height: 100, width: 200, borderWidth: 2}}
+          minimumTrackTintColor={'red'}
+          maximumTrackTintColor={'purple'}
+          value={8}
+          minimumValue={0}
+          maximumValue={10} />
       </View>
     );
   }
