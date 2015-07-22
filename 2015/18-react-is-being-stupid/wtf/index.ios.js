@@ -6,8 +6,8 @@
 
 var React = require('react-native');
 var { AppRegistry, StyleSheet, Text, View } = React;
-var AdamBox = require('./AdamBox.js');
 var ShaheenSlider = require('./ShaheenSliderIOS.js');
+var AdamBox = require('./AdamBox.js');
 
 var wtf = React.createClass({
   render: function() {
