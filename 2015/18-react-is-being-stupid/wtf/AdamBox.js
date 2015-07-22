@@ -19,7 +19,9 @@ var AdamBox = React.createClass({
      * Used to style and layout the `Slider`.  See `StyleSheet.js` and
      * `ViewStylePropTypes.js` for more info.
      */
-    style: View.propTypes.style
+    style: View.propTypes.style,
+
+    textColor: 'red',
   },
 
   render: function() {
