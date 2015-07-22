@@ -11,6 +11,7 @@ var {
   Text,
   View,
 } = React;
+var ShaheenSlider = require('./ShaheenSliderIOS.js');
 
 var Custom = React.createClass({
   render: function() {
@@ -22,10 +23,7 @@ var Custom = React.createClass({
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <ShaheenSlider style={{height: 100, width: 200, borderWidth: 2}}/>
       </View>
     );
   }
@@ -34,7 +32,7 @@ var Custom = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 20,
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
