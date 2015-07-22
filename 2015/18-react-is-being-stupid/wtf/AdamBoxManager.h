@@ -1,5 +1,5 @@
 //
-//  AdamBox.h
+//  AdamBoxManager.h
 //  wtf
 //
 //  Created by Shaheen Ghiassy on 7/22/15.
@@ -8,6 +8,6 @@
 
 #import "RCTViewManager.h"
 
-@interface AdamBox : RCTViewManager
+@interface AdamBoxManager : RCTViewManager
 
 @end
