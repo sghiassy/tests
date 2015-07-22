@@ -13,32 +13,24 @@
 RCT_EXPORT_MODULE()
 
 - (UIView *)view {
-
-  UISwitch *aSwitch = [[UISwitch alloc] init];
-  aSwitch.layer.borderColor = [UIColor orangeColor].CGColor;
-  aSwitch.layer.borderWidth = 1.0f;
-
-//  aView.layer.borderColor = [UIColor orangeColor].CGColor;
-//  aView.layer.borderWidth = 10.0f;
-//
-//  UILabel *shaheen = [[UILabel alloc] init];
-//  shaheen.text = @"Shaheen";
-//  [aView addSubview:shaheen];
-//  aView.translatesAutoresizingMaskIntoConstraints = NO;
-//  [aView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[label]|"
-//                                                                options:0
-//                                                                metrics:nil
-//                                                                  views:@{@"label":shaheen}]];
-//  [aView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[label]|"
-//                                                                options:0
-//                                                                metrics:nil
-//                                                                  views:@{@"label":shaheen}]];
-
-    UIView *aView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-  [aView addSubview:aSwitch];
+  UIView *aView = [[UIView alloc] init];
   aView.backgroundColor = [UIColor redColor];
   aView.layer.borderColor = [UIColor blueColor].CGColor;
   aView.layer.borderWidth = 3.0f;
+
+  UILabel *shaheen = [[UILabel alloc] init];
+  shaheen.text = @"Shaheen";
+  shaheen.textAlignment = NSTextAlignmentCenter;
+  [aView addSubview:shaheen];
+  shaheen.translatesAutoresizingMaskIntoConstraints = NO;
+  [aView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[label]|"
+                                                                options:0
+                                                                metrics:nil
+                                                                  views:@{@"label":shaheen}]];
+  [aView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[label]|"
+                                                                options:0
+                                                                metrics:nil
+                                                                  views:@{@"label":shaheen}]];
 
   return aView;
 }
