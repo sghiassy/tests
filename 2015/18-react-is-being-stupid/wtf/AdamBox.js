@@ -14,7 +14,7 @@ var AdamBox = React.createClass({
     textColor: PropTypes.string,
   },
 
-  getDefaultProps: function() {
+  getInitialState: function() {
     return {
       textColor: 'orange',
     }
@@ -22,9 +22,13 @@ var AdamBox = React.createClass({
 
   render: function() {
     return (
-      <AdamBoxElement style={{width: 200, height: 100}} textColor={this.props.textColor} />
+      <AdamBoxElement style={{width: 200, height: 100}} textColor={this.state.textColor} />
     );
-  }
+  },
+
+  changeTextColor(colorString) {
+    this.setState({'textColor': colorString})
+  },
 });
 
 var AdamBoxElement = requireNativeComponent('AdamBox', AdamBox);
