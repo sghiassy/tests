@@ -24,9 +24,9 @@ var wtf = React.createClass({
           Cmd+D or shake for dev menu
         </Text>
         <AdamBox textColor={'blue'} />
-        <AdamBox />
+        <AdamBox ref={"secondAdamBox"} />
         <ShaheenSlider style={{width: 200, height: 100}} />
-        <TouchableOpacity onPress={this.onPress.bind(this)}>
+        <TouchableOpacity onPress={this.onPress}>
           <Text>Increase</Text>
         </TouchableOpacity>
       </View>
@@ -34,7 +34,7 @@ var wtf = React.createClass({
   },
 
   onPress() {
-    console.log('I was pressed');
+    this.refs.secondAdamBox.changeTextColor('red');
   }
 });
 
