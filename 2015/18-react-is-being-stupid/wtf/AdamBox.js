@@ -21,7 +21,7 @@ var AdamBox = React.createClass({
 
   render: function() {
     return (
-      <ShaheenSlider style={{width: 200, height: 100}} />
+      <ShaheenSlider style={{width: 200, height: 100}} textColor={'red'} />
     );
   }
 });

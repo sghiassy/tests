@@ -22,6 +22,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		7A7F72371B6063C5004C4F4D /* TheAdamBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7F72361B6063C5004C4F4D /* TheAdamBox.m */; };
 		7AEA021E1B603599002AA142 /* ShaheenSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA021D1B603599002AA142 /* ShaheenSlider.m */; };
 		7AEA02351B603706002AA142 /* AdamBoxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA02341B603706002AA142 /* AdamBoxManager.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -128,6 +129,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7A7F72351B6063C5004C4F4D /* TheAdamBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheAdamBox.h; sourceTree = "<group>"; };
+		7A7F72361B6063C5004C4F4D /* TheAdamBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheAdamBox.m; sourceTree = "<group>"; };
 		7AEA021C1B603599002AA142 /* ShaheenSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaheenSlider.h; sourceTree = "<group>"; };
 		7AEA021D1B603599002AA142 /* ShaheenSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaheenSlider.m; sourceTree = "<group>"; };
 		7AEA02331B603706002AA142 /* AdamBoxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdamBoxManager.h; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				7AEA021D1B603599002AA142 /* ShaheenSlider.m */,
 				7AEA02331B603706002AA142 /* AdamBoxManager.h */,
 				7AEA02341B603706002AA142 /* AdamBoxManager.m */,
+				7A7F72351B6063C5004C4F4D /* TheAdamBox.h */,
+				7A7F72361B6063C5004C4F4D /* TheAdamBox.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -538,6 +543,7 @@
 			files = (
 				7AEA02351B603706002AA142 /* AdamBoxManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				7A7F72371B6063C5004C4F4D /* TheAdamBox.m in Sources */,
 				7AEA021E1B603599002AA142 /* ShaheenSlider.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);

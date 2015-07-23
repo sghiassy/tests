@@ -7,32 +7,17 @@
 //
 
 #import "AdamBoxManager.h"
+#import "TheAdamBox.h"
 
 @implementation AdamBoxManager
 
 RCT_EXPORT_MODULE()
 
 - (UIView *)view {
-  UIView *aView = [[UIView alloc] init];
-  aView.backgroundColor = [UIColor redColor];
-  aView.layer.borderColor = [UIColor blueColor].CGColor;
-  aView.layer.borderWidth = 3.0f;
-
-  UILabel *shaheen = [[UILabel alloc] init];
-  shaheen.text = @"Shaheen";
-  shaheen.textAlignment = NSTextAlignmentCenter;
-  [aView addSubview:shaheen];
-  shaheen.translatesAutoresizingMaskIntoConstraints = NO;
-  [aView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[label]|"
-                                                                options:0
-                                                                metrics:nil
-                                                                  views:@{@"label":shaheen}]];
-  [aView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[label]|"
-                                                                options:0
-                                                                metrics:nil
-                                                                  views:@{@"label":shaheen}]];
-
-  return aView;
+  TheAdamBox *box = [[TheAdamBox alloc] init];
+  box.layer.borderColor = [UIColor orangeColor].CGColor;
+  box.layer.borderWidth = 1.0f;
+  return box;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(textColor, UIColor);
