@@ -10,12 +10,7 @@ var AdamBox = React.createClass({
   mixins: [NativeMethodsMixin],
 
   propTypes: {
-    /**
-     * Used to style and layout the `Slider`.  See `StyleSheet.js` and
-     * `ViewStylePropTypes.js` for more info.
-     */
     style: View.propTypes.style,
-
     textColor: PropTypes.string,
   },
 
