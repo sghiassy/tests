@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react-native');
-var { AppRegistry, StyleSheet, Text, View } = React;
+var { TouchableOpacity, AppRegistry, StyleSheet, Text, View } = React;
 var ShaheenSlider = require('./ShaheenSliderIOS.js');
 var AdamBox = require('./AdamBox.js');
 
@@ -26,8 +26,15 @@ var wtf = React.createClass({
         <AdamBox textColor={'blue'} />
         <AdamBox />
         <ShaheenSlider style={{width: 200, height: 100}} />
+        <TouchableOpacity onPress={this.onPress.bind(this)}>
+          <Text>Increase</Text>
+        </TouchableOpacity>
       </View>
     );
+  },
+
+  onPress() {
+    console.log('I was pressed');
   }
 });
 
