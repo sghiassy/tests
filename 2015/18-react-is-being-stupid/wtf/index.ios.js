@@ -23,6 +23,7 @@ var wtf = React.createClass({
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <AdamBox textColor={'blue'} />
         <AdamBox />
         <ShaheenSlider style={{width: 200, height: 100}} />
       </View>
