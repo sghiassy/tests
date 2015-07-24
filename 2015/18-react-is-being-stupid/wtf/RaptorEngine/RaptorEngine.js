@@ -3,12 +3,17 @@ var { Text, View } = React;
 
 var RaptorEngine = React.createClass({
 
+  getInitialState: function() {
+    return {
+      viewModels: [],
+    }
+  },
+
   render: function() {
-    var viewModel;
-    if (this.state && this.state.viewModels) {
-      viewModel = this.state.viewModels[0].fuse();
+    if (this.state.viewModels.length > 0) {
+      var viewModel = this.state.viewModels[0].fuse();
     } else {
-      viewModel = <Text>Blank</Text>
+      var viewModel = <Text>Blank</Text>
     }
 
     return (
@@ -22,6 +27,15 @@ var RaptorEngine = React.createClass({
   resetWithViewModels: function(viewModels) {
     this.setState({
       viewModels: viewModels
+    });
+  },
+
+  addViewModel: function(viewModel) {
+    var existingViewModels = this.state.viewModels;
+    existingViewModels.push(viewModel);
+
+    this.setState({
+      viewModels: existingViewModels,
     });
   },
 });

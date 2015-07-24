@@ -40,7 +40,7 @@ var wtf = React.createClass({
     var viewModel = new RaptorEngineViewModel();
     viewModel.model = new PersonModel();
     viewModel.View = PersonView;
-    this.refs.raptorEngine.resetWithViewModels([viewModel]);
+    this.refs.raptorEngine.addViewModel(viewModel);
   }
 });
 
