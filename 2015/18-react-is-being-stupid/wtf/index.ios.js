@@ -25,12 +25,18 @@ var wtf = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          React Performant Scroll View
         </Text>
         <RaptorEngine
           ref="raptorEngine" />
         <TouchableOpacity onPress={this.onPress}>
-          <Text>Press Me</Text>
+          <Text>Add 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.onPress5}>
+          <Text>Add 5</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.pop}>
+          <Text>Pop</Text>
         </TouchableOpacity>
       </View>
     );
@@ -41,6 +47,23 @@ var wtf = React.createClass({
     viewModel.model = new PersonModel();
     viewModel.View = PersonView;
     this.refs.raptorEngine.addViewModel(viewModel);
+  },
+
+  onPress5() {
+    var viewModels = [];
+
+    for (var i = 0; i < 5; i++) {
+      var viewModel = new RaptorEngineViewModel();
+      viewModel.model = new PersonModel();
+      viewModel.View = PersonView;
+      viewModels.push(viewModel);
+    }
+
+    this.refs.raptorEngine.addViewModels(viewModels);
+  },
+
+  pop() {
+    this.refs.raptorEngine.popViewModel();
   }
 });
 
