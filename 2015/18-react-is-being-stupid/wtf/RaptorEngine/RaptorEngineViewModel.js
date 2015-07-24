@@ -12,6 +12,10 @@ class ViewModel {
     var view = React.createElement(this.View, {model: this.model});
     return view;
   }
+
+  height() {
+    return this.View.Height;
+  }
 }
 
 module.exports = ViewModel;

@@ -27,7 +27,14 @@ var RaptorEngine = React.createClass({
   },
 
   render: function() {
-    var toRender;
+    var toRender = this.renderContent();
+    return this.createScrollView(toRender);
+  },
+
+  renderContent: function() {
+    var toRender = [];
+    var visibleTop = this.scrollProperties.offsetY;
+    var visibleBottom = visibleTop + this.scrollProperties.visibleHeight;
 
     if (this.state.viewModels.length > 0) {
       toRender = [];
@@ -38,7 +45,7 @@ var RaptorEngine = React.createClass({
       }
     }
 
-    return this.createScrollView(toRender);
+    return toRender;
   },
 
   /**
