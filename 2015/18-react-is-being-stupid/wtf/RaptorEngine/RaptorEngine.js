@@ -3,14 +3,14 @@ var { Text, View } = React;
 
 var RaptorEngine = React.createClass({
 
-  getInitialState: function() {
-    return {
-      viewModel: 'shaheen initial state'
-    };
-  },
-
   render: function() {
-    var viewModel = <Text>{this.state.viewModel}</Text>;
+    var viewModel;
+    if (this.state && this.state.viewModels) {
+      viewModel = this.state.viewModels[0].fuse();
+    } else {
+      viewModel = <Text>Blank</Text>
+    }
+
     return (
       <View style={{borderWidth:1, width: 250, height: 500}}>
         <Text>RaptorEngine</Text>
@@ -21,7 +21,7 @@ var RaptorEngine = React.createClass({
 
   resetWithViewModels: function(viewModels) {
     this.setState({
-      viewModel: viewModels[0]
+      viewModels: viewModels
     });
   },
 });

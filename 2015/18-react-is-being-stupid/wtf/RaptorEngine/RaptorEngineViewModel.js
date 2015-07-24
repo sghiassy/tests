@@ -2,18 +2,15 @@ var React = require('react-native');
 var { Text, View } = React;
 
 class ViewModel {
-  viewForViewModel() {
-    return (
-      <View>
-        <Text>
-          {viewModel.person}
-        </Text>
-      </View>
-    );
+  constructor() {
+    // Define (i.e. Document) internal variables
+    this.View = undefined;
+    this.model = undefined;
   }
 
-  render() {
-
+  fuse() {
+    var view = React.createElement(this.View, {model: this.model});
+    return view;
   }
 }
 
