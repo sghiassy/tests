@@ -39,7 +39,6 @@ var wtf = React.createClass({
   onPress() {
     var viewModel = new RaptorEngineViewModel();
     viewModel.model = new PersonModel();
-    debugger;
     this.refs.raptorEngine.resetWithViewModels([viewModel]);
   }
 });
