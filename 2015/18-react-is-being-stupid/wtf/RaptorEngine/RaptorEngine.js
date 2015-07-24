@@ -19,13 +19,10 @@ var RaptorEngine = React.createClass({
         var currentViewModel = this.state.viewModels[i];
         toRender.push(currentViewModel.fuse());
       }
-    } else {
-      toRender = <Text>Blank</Text>
     }
 
     return (
       <View style={{borderWidth:1, width: 250, height: 500}}>
-        <Text>RaptorEngine</Text>
         {toRender}
       </View>
     );
