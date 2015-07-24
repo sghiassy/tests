@@ -2,6 +2,7 @@ var React = require('react-native');
 var { ScrollView, Text, View } = React;
 var merge = require('merge');
 var ScrollResponder = require('ScrollResponder');
+var RaptorEngineCell = require('./RaptorEngineCell');
 
 // Constants
 var DEFAULT_SCROLL_CALLBACK_THROTTLE = 50;
@@ -41,7 +42,8 @@ var RaptorEngine = React.createClass({
 
       for (var i = 0; i < this.state.viewModels.length; i++) {
         var currentViewModel = this.state.viewModels[i];
-        toRender.push(currentViewModel.fuse());
+        var cell = <RaptorEngineCell viewModel={currentViewModel} />;
+        toRender.push(cell);
       }
     }
 
