@@ -1,8 +1,24 @@
 var React = require('react-native');
 var { ScrollView, Text, View } = React;
+var merge = require('merge');
+var ScrollResponder = require('ScrollResponder');
+
+// Constants
+var DEFAULT_SCROLL_CALLBACK_THROTTLE = 50;
 var SCROLL_VIEW_REF = "SCROLL_VIEW_REF";
 
+
 var RaptorEngine = React.createClass({
+  mixins: [ScrollResponder.Mixin],
+
+  componentWillMount: function() {
+    // this data should never trigger a render pass, so don't put in state
+    this.scrollProperties = {
+      visibleHeight: undefined,
+      contentHeight: undefined,
+      offsetY: 0
+    };
+  },
 
   getInitialState: function() {
     return {
@@ -22,11 +38,34 @@ var RaptorEngine = React.createClass({
       }
     }
 
+    return this.createScrollView(toRender);
+  },
+
+  /**
+   * Scroll View Management
+   */
+
+  createScrollView: function(content) {
+    var props = merge(
+      this.props, {
+        onScroll: this._onScroll,
+        scrollEventThrottle: DEFAULT_SCROLL_CALLBACK_THROTTLE, // Define the rate at which we get called back from scrolling
+      }
+    );
+
     return (
-      <ScrollView style={{borderWidth:1, width: 250, height: 500}}>
-        {toRender}
+      <ScrollView {...props}
+        style={{borderWidth:1, width: 250, height: 500}}>
+        {content}
       </ScrollView>
     );
+  },
+
+  _onScroll: function(evt) {
+    // Take the opportunity to update the scroll property metrics
+    this.scrollProperties.visibleHeight = evt.nativeEvent.layoutMeasurement.height;
+    this.scrollProperties.contentHeight = evt.nativeEvent.contentSize.height;
+    this.scrollProperties.offsetY = evt.nativeEvent.contentOffset.y;
   },
 
   /*
