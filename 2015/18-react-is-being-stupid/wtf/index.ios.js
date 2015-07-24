@@ -5,6 +5,7 @@ var { TouchableOpacity, AppRegistry, StyleSheet, Text, View } = React;
 var ShaheenSlider = require('./ShaheenSliderIOS.js');
 var AdamBox = require('./AdamBox.js');
 var RaptorEngine = require('./RaptorEngine/RaptorEngine.js');
+var RaptorEngineViewModel = require('./RaptorEngine/RaptorEngineViewModel');
 
 var wtf = React.createClass({
   render: function() {
@@ -24,13 +25,18 @@ var wtf = React.createClass({
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        <RaptorEngine />
+        <RaptorEngine
+          ref="raptorEngine" />
+        <TouchableOpacity onPress={this.onPress}>
+          <Text>Press Me</Text>
+        </TouchableOpacity>
       </View>
     );
   },
 
   onPress() {
-    this.refs.secondAdamBox.changeTextColor('red');
+    var viewModel = <RaptorEngineViewModel />;
+    this.refs.raptorEngine.resetWithViewModels([viewModel]);
   }
 });
 
