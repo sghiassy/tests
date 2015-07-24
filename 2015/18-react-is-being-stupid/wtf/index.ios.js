@@ -1,34 +1,30 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
 var { TouchableOpacity, AppRegistry, StyleSheet, Text, View } = React;
 var ShaheenSlider = require('./ShaheenSliderIOS.js');
 var AdamBox = require('./AdamBox.js');
+var RaptorEngine = require('./RaptorEngine/RaptorEngine.js');
 
 var wtf = React.createClass({
   render: function() {
+    var ViewModels = {
+      View: function() {
+        return (
+          <View style={{borderWidth:2, borderColor: 'red'}}><Text>Shaheen</Text></View>
+        );
+      },
+      Data: function() {
+        text: 'Shaheen'
+      },
+    };
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-        <AdamBox textColor={'blue'} />
-        <AdamBox ref={"secondAdamBox"} />
-        <ShaheenSlider style={{width: 200, height: 100}} />
-        <TouchableOpacity onPress={this.onPress}>
-          <Text>Increase</Text>
-        </TouchableOpacity>
+        <RaptorEngine />
       </View>
     );
   },
