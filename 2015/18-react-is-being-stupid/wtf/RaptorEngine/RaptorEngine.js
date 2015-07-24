@@ -1,5 +1,6 @@
 var React = require('react-native');
-var { Text, View } = React;
+var { ScrollView, Text, View } = React;
+var SCROLL_VIEW_REF = "SCROLL_VIEW_REF";
 
 var RaptorEngine = React.createClass({
 
@@ -22,11 +23,15 @@ var RaptorEngine = React.createClass({
     }
 
     return (
-      <View style={{borderWidth:1, width: 250, height: 500}}>
+      <ScrollView style={{borderWidth:1, width: 250, height: 500}}>
         {toRender}
-      </View>
+      </ScrollView>
     );
   },
+
+  /*
+   * View Model Management
+   */
 
   resetWithViewModels: function(viewModels) {
     this.setState({
@@ -35,13 +40,20 @@ var RaptorEngine = React.createClass({
   },
 
   addViewModel: function(viewModel) {
-    var existingViewModels = this.state.viewModels;
-    existingViewModels.push(viewModel);
+    this.addViewModels([viewModel]);
+  },
 
+  addViewModels: function(viewModels) {
     this.setState({
-      viewModels: existingViewModels,
+      viewModels: this.state.viewModels.concat(viewModels),
     });
   },
+
+  popViewModel: function() {
+    this.state.viewModels.pop();
+    this.setState({}); // Empty call to setState so that we refresh the view
+  },
+
 });
 
 module.exports = RaptorEngine;
