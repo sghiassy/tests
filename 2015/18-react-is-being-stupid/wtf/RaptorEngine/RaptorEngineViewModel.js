@@ -1,12 +1,20 @@
 var React = require('react-native');
 var { Text, View } = React;
 
-var RaptorEngineViewModel = React.createClass({
-  render: function() {
-    render(
-      <Text>ViewModel</Text>
+class ViewModel {
+  viewForViewModel() {
+    return (
+      <View>
+        <Text>
+          {viewModel.person}
+        </Text>
+      </View>
     );
   }
-});
 
-module.exports = RaptorEngineViewModel;
+  render() {
+
+  }
+}
+
+module.exports = ViewModel;

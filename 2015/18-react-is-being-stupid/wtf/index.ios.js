@@ -6,6 +6,8 @@ var ShaheenSlider = require('./ShaheenSliderIOS.js');
 var AdamBox = require('./AdamBox.js');
 var RaptorEngine = require('./RaptorEngine/RaptorEngine.js');
 var RaptorEngineViewModel = require('./RaptorEngine/RaptorEngineViewModel');
+var PersonModel = require('./RaptorEngine/PersonModel');
+
 
 var wtf = React.createClass({
   render: function() {
@@ -35,7 +37,9 @@ var wtf = React.createClass({
   },
 
   onPress() {
-    var viewModel = <RaptorEngineViewModel />;
+    var viewModel = new RaptorEngineViewModel();
+    viewModel.model = new PersonModel();
+    debugger;
     this.refs.raptorEngine.resetWithViewModels([viewModel]);
   }
 });
