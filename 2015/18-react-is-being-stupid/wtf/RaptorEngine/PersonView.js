@@ -9,6 +9,9 @@ var PersonView = React.createClass({
   },
 });
 
+PersonView.Height = 300;
+PersonView.Width = 250;
+
 var styles = StyleSheet.create({
   card: {
     flex: 1,
