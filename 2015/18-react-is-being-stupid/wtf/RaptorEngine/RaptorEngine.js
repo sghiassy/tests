@@ -10,16 +10,23 @@ var RaptorEngine = React.createClass({
   },
 
   render: function() {
+    var toRender;
+
     if (this.state.viewModels.length > 0) {
-      var viewModel = this.state.viewModels[0].fuse();
+      toRender = [];
+
+      for (var i = 0; i < this.state.viewModels.length; i++) {
+        var currentViewModel = this.state.viewModels[i];
+        toRender.push(currentViewModel.fuse());
+      }
     } else {
-      var viewModel = <Text>Blank</Text>
+      toRender = <Text>Blank</Text>
     }
 
     return (
       <View style={{borderWidth:1, width: 250, height: 500}}>
         <Text>RaptorEngine</Text>
-        {viewModel}
+        {toRender}
       </View>
     );
   },
