@@ -7,7 +7,7 @@ var AdamBox = require('./AdamBox.js');
 var RaptorEngine = require('./RaptorEngine/RaptorEngine.js');
 var RaptorEngineViewModel = require('./RaptorEngine/RaptorEngineViewModel');
 var PersonModel = require('./RaptorEngine/PersonModel');
-
+var PersonView = require('./RaptorEngine/PersonView');
 
 var wtf = React.createClass({
   render: function() {
@@ -39,6 +39,7 @@ var wtf = React.createClass({
   onPress() {
     var viewModel = new RaptorEngineViewModel();
     viewModel.model = new PersonModel();
+    viewModel.View = PersonView;
     this.refs.raptorEngine.resetWithViewModels([viewModel]);
   }
 });
