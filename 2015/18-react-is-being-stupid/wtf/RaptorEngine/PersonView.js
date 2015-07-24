@@ -16,7 +16,7 @@ var styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: '#CCC',
-    height: 400,
+    height: 300,
     borderWidth: 1,
   }
 });

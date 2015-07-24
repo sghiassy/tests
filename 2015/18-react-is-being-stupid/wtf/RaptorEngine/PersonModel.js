@@ -1,6 +1,6 @@
 class Person {
   constructor(props) {
-    this.person = "Shaheen";
+    this.person = "Shaheen" + props;
   }
 }
 

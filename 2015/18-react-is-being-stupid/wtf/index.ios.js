@@ -54,7 +54,7 @@ var wtf = React.createClass({
 
     for (var i = 0; i < 5; i++) {
       var viewModel = new RaptorEngineViewModel();
-      viewModel.model = new PersonModel();
+      viewModel.model = new PersonModel(i);
       viewModel.View = PersonView;
       viewModels.push(viewModel);
     }
