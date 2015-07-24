@@ -34,15 +34,13 @@ var RaptorEngine = React.createClass({
 
   renderContent: function() {
     var toRender = [];
-    var visibleTop = this.scrollProperties.offsetY;
-    var visibleBottom = visibleTop + this.scrollProperties.visibleHeight;
 
     if (this.state.viewModels.length > 0) {
       toRender = [];
 
       for (var i = 0; i < this.state.viewModels.length; i++) {
         var currentViewModel = this.state.viewModels[i];
-        var cell = <RaptorEngineCell viewModel={currentViewModel} />;
+        var cell = <RaptorEngineCell viewModel={currentViewModel} ref={"cell_" + i} />;
         toRender.push(cell);
       }
     }
@@ -75,6 +73,44 @@ var RaptorEngine = React.createClass({
     this.scrollProperties.visibleHeight = evt.nativeEvent.layoutMeasurement.height;
     this.scrollProperties.contentHeight = evt.nativeEvent.contentSize.height;
     this.scrollProperties.offsetY = evt.nativeEvent.contentOffset.y;
+
+
+    var visibleTop = this.scrollProperties.offsetY;
+    var visibleBottom = visibleTop + this.scrollProperties.visibleHeight;
+    console.log('Viewport is ' + visibleTop + " to " + visibleBottom);
+
+    // Update the cells with their current positioning
+    // TODO: This shouldn't be happening on scroll. instead
+    //       I'd like to see this happen once on instantiation - much more performant.
+    if (evt.nativeEvent.updatedChildFrames) {
+      var childFrames = evt.nativeEvent.updatedChildFrames;
+
+      for (var i = 0; i < childFrames.length - 1; i++) {
+        var currentCell = this.refs['cell_' + i];
+        currentCell.frame = childFrames[i];
+      }
+    }
+
+    for (var i = 0; i < this.state.viewModels.length - 1; i++) {
+      var currentCell = this.refs['cell_' + i];
+
+      var currentCellTopIsVisible = currentCell.frame.y > visibleTop && currentCell.frame.y < visibleBottom;
+      var currentCellBottom = currentCell.frame.y + currentCell.frame.height;
+      var currentCellBottomIsVisible = currentCellBottom > visibleTop && currentCellBottom < visibleBottom;
+
+      if (i == 0) {
+        console.log('top: ' + currentCell.frame.y + " bottom: " + currentCellBottom);
+        console.log('topIsVisible: ', currentCellTopIsVisible);
+        console.log('bottomIsVisible: ', currentCellBottomIsVisible);
+      }
+
+      if (currentCellTopIsVisible || currentCellBottomIsVisible) {
+        currentCell.setVisibility(true);
+      } else {
+        // debugger
+        currentCell.setVisibility(false);
+      }
+    }
   },
 
   /*

@@ -12,9 +12,15 @@ var RaptorEngineCell = React.createClass({
     if (this.state.isVisible) {
       return this.props.viewModel.fuse();
     } else {
-      return <View></View>;
+      return <View style={{borderWidth: 20, borderColor: 'red', height: 300}}><Text>Invisible</Text></View>;
     }
   },
+
+  setVisibility: function(visible) {
+    this.setState({
+      isVisible: visible,
+    });
+  }
 });
 
 module.exports = RaptorEngineCell;
