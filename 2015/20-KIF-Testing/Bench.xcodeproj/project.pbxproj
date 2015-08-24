@@ -21,6 +21,8 @@
 		6EADCDC01AC4A32300E041E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EADCDBF1AC4A32300E041E4 /* Colors.swift */; };
 		6EADCE161AC5425700E041E4 /* MainScreenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EADCE151AC5425700E041E4 /* MainScreenTest.m */; };
 		A13AA54E4731746C50A1BAF2 /* libPods-BenchKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8111BF74C4BB1028E6FB5F9 /* libPods-BenchKIF.a */; };
+		AA6013031B824974002DDCA5 /* Bench_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6013021B824974002DDCA5 /* Bench_Tests.m */; };
+		AA60130F1B824A81002DDCA5 /* MainScreenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AA60130B1B824A07002DDCA5 /* MainScreenTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,13 @@
 			remoteInfo = Bench;
 		};
 		6EADCE171AC5425700E041E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EADCD8E1AC48CD800E041E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EADCD951AC48CD800E041E4;
+			remoteInfo = Bench;
+		};
+		AA6013041B824974002DDCA5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EADCD8E1AC48CD800E041E4 /* Project object */;
 			proxyType = 1;
@@ -64,6 +73,11 @@
 		6EADCE111AC5425700E041E4 /* BenchKIF.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenchKIF.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EADCE141AC5425700E041E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EADCE151AC5425700E041E4 /* MainScreenTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainScreenTest.m; sourceTree = "<group>"; };
+		AA6012FE1B824974002DDCA5 /* Bench Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bench Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA6013011B824974002DDCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA6013021B824974002DDCA5 /* Bench_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bench_Tests.m; sourceTree = "<group>"; };
+		AA60130A1B824A07002DDCA5 /* MainScreenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainScreenTest.h; path = "Bench Tests/MainScreenTest.h"; sourceTree = "<group>"; };
+		AA60130B1B824A07002DDCA5 /* MainScreenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainScreenTest.m; path = "Bench Tests/MainScreenTest.m"; sourceTree = "<group>"; };
 		C995115E505E9BD825293991 /* libPods-BenchTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BenchTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111BF74C4BB1028E6FB5F9 /* libPods-BenchKIF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BenchKIF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5D2DE4225C2A9F2F33C01D /* Pods-BenchKIF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchKIF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BenchKIF/Pods-BenchKIF.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,15 +107,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA6012FB1B824974002DDCA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		6EADCD8D1AC48CD800E041E4 = {
 			isa = PBXGroup;
 			children = (
+				AA6013091B8249EF002DDCA5 /* Bench Tests */,
 				6EADCD981AC48CD800E041E4 /* Bench */,
 				6EADCDAE1AC48CD800E041E4 /* BenchTests */,
 				6EADCE121AC5425700E041E4 /* BenchKIF */,
+				AA6012FF1B824974002DDCA5 /* Bench Tests */,
 				6EADCD971AC48CD800E041E4 /* Products */,
 				F98BC27EA39ABD73DD46B35F /* Pods */,
 				CAB4C1CDD261C60A9BA11433 /* Frameworks */,
@@ -117,6 +140,7 @@
 				6EADCD961AC48CD800E041E4 /* Bench.app */,
 				6EADCDAB1AC48CD800E041E4 /* BenchTests.xctest */,
 				6EADCE111AC5425700E041E4 /* BenchKIF.xctest */,
+				AA6012FE1B824974002DDCA5 /* Bench Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +205,32 @@
 				6EADCE141AC5425700E041E4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA6012FF1B824974002DDCA5 /* Bench Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AA6013021B824974002DDCA5 /* Bench_Tests.m */,
+				AA6013001B824974002DDCA5 /* Supporting Files */,
+			);
+			path = "Bench Tests";
+			sourceTree = "<group>";
+		};
+		AA6013001B824974002DDCA5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA6013011B824974002DDCA5 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA6013091B8249EF002DDCA5 /* Bench Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AA60130A1B824A07002DDCA5 /* MainScreenTest.h */,
+				AA60130B1B824A07002DDCA5 /* MainScreenTest.m */,
+			);
+			name = "Bench Tests";
 			sourceTree = "<group>";
 		};
 		CAB4C1CDD261C60A9BA11433 /* Frameworks */ = {
@@ -265,6 +315,24 @@
 			productReference = 6EADCE111AC5425700E041E4 /* BenchKIF.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		AA6012FD1B824974002DDCA5 /* Bench Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA6013081B824974002DDCA5 /* Build configuration list for PBXNativeTarget "Bench Tests" */;
+			buildPhases = (
+				AA6012FA1B824974002DDCA5 /* Sources */,
+				AA6012FB1B824974002DDCA5 /* Frameworks */,
+				AA6012FC1B824974002DDCA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA6013051B824974002DDCA5 /* PBXTargetDependency */,
+			);
+			name = "Bench Tests";
+			productName = "Bench Tests";
+			productReference = AA6012FE1B824974002DDCA5 /* Bench Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -285,6 +353,10 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 6EADCD951AC48CD800E041E4;
 					};
+					AA6012FD1B824974002DDCA5 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 6EADCD951AC48CD800E041E4;
+					};
 				};
 			};
 			buildConfigurationList = 6EADCD911AC48CD800E041E4 /* Build configuration list for PBXProject "Bench" */;
@@ -303,6 +375,7 @@
 				6EADCD951AC48CD800E041E4 /* Bench */,
 				6EADCDAA1AC48CD800E041E4 /* BenchTests */,
 				6EADCE101AC5425700E041E4 /* BenchKIF */,
+				AA6012FD1B824974002DDCA5 /* Bench Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,6 +400,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6EADCE0F1AC5425700E041E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA6012FC1B824974002DDCA5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -453,6 +533,15 @@
 			files = (
 				6EADCE161AC5425700E041E4 /* MainScreenTest.m in Sources */,
 				3FB292931ADFD1BC003B2728 /* MainScreenSpec.m in Sources */,
+				AA60130F1B824A81002DDCA5 /* MainScreenTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA6012FA1B824974002DDCA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA6013031B824974002DDCA5 /* Bench_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +557,11 @@
 			isa = PBXTargetDependency;
 			target = 6EADCD951AC48CD800E041E4 /* Bench */;
 			targetProxy = 6EADCE171AC5425700E041E4 /* PBXContainerItemProxy */;
+		};
+		AA6013051B824974002DDCA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EADCD951AC48CD800E041E4 /* Bench */;
+			targetProxy = AA6013041B824974002DDCA5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -702,6 +796,48 @@
 			};
 			name = Release;
 		};
+		AA6013061B824974002DDCA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "Bench Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bench.app/Bench";
+			};
+			name = Debug;
+		};
+		AA6013071B824974002DDCA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "Bench Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bench.app/Bench";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -740,6 +876,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		AA6013081B824974002DDCA5 /* Build configuration list for PBXNativeTarget "Bench Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA6013061B824974002DDCA5 /* Debug */,
+				AA6013071B824974002DDCA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
