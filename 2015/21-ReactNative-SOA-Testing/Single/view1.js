@@ -1,15 +1,18 @@
 var React = require('react-native');
-var { StyleSheet, Text, View, TouchableHighlight } = React;
+var { StyleSheet, Text, View, TouchableOpacity } = React;
 
 class HelloView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.props.onForward}>
+        <TouchableOpacity onPress={this.props.onForward}>
           <Text style={styles.welcome}>
             {this.props.name}
           </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.props.onBack}>
+          <Text>Back</Text>
+        </TouchableOpacity>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
