@@ -51,9 +51,7 @@
     @"View18": @{
         @"url":@"http://localhost:8099/index.ios.bundle"},
     @"View19": @{
-        @"url":@"http://localhost:8083/index.ios.bundle"},
-    @"View20": @{
-        @"url":@"http://localhost:8083/index.ios.bundle"},
+        @"url":@"http://localhost:8100/index.ios.bundle"},
     };
 }
 

@@ -17,7 +17,7 @@ var View11 = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          View 11
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
