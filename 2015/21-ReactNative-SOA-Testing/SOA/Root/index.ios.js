@@ -6,19 +6,19 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
+  AppRegistry, StyleSheet, Text, TouchableOpacity, View
 } = React;
+var NativeRouterViewController = require('NativeModules').NativeRouterViewController;
 
 var Root = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
+        <TouchableOpacity onPress={this.press}>
+          <Text style={styles.welcome}>
+            Welcome to React Native!
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
@@ -28,6 +28,10 @@ var Root = React.createClass({
         </Text>
       </View>
     );
+  },
+
+  press: function() {
+
   }
 });
 
@@ -36,18 +40,18 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 10
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
-  },
+    marginBottom: 5
+  }
 });
 
 AppRegistry.registerComponent('Root', () => Root);
