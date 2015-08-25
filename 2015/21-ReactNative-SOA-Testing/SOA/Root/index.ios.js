@@ -16,7 +16,7 @@ var Root = React.createClass({
       <View style={styles.container}>
         <TouchableOpacity onPress={this.press}>
           <Text style={styles.welcome}>
-            Welcome to React Native!
+            Root
           </Text>
         </TouchableOpacity>
         <Text style={styles.instructions}>
@@ -31,7 +31,9 @@ var Root = React.createClass({
   },
 
   press: function() {
+    NativeRouterViewController.GET('View1', null, function(err, res) {
 
+    });
   }
 });
 

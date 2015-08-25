@@ -5,10 +5,12 @@
 'use strict';
 
 var React = require('react-native');
+var NativeRouterViewController = require('NativeModules').NativeRouterViewController;
 var {
   AppRegistry,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } = React;
 
@@ -16,9 +18,11 @@ var View1 = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
+        <TouchableOpacity onPress={this.press}>
+          <Text style={styles.welcome}>
+            View 1
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
@@ -28,6 +32,12 @@ var View1 = React.createClass({
         </Text>
       </View>
     );
+  },
+
+  press: function() {
+    NativeRouterViewController.GET('View2', null, function(err, res) {
+
+    });
   }
 });
 
