@@ -15,8 +15,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NativeRouterViewController *routerVC = [[NativeRouterViewController sharedInstance] initWith:@"Root"];
+  UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:routerVC];
+  rootNav.navigationBar.hidden = YES;
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  self.window.rootViewController = routerVC;
+  self.window.rootViewController = rootNav;
   [self.window makeKeyAndVisible];
   return YES;
 }

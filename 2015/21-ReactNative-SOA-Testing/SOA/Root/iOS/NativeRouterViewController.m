@@ -60,9 +60,8 @@ RCT_EXPORT_METHOD(GET:(NSString *)route headers:(NSDictionary *)headers callback
   [this GET:route headers:headers withDisplayCallback:^(UIView *newView) {
     UIViewController *newVC = [[UIViewController alloc] init];
     newVC.view = newView;
-    [this presentViewController:newVC animated:YES completion:^{
-      callback(@[[NSNull null]]);
-    }];
+    [this.navigationController pushViewController:newVC animated:YES];
+    callback(@[[NSNull null]]);
   }];
 }
 

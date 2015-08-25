@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RCTBridgeModule.h"
 
-@interface NativeRouterViewController : UIViewController <RCTBridgeModule>\
+@interface NativeRouterViewController : UIViewController <RCTBridgeModule>
 
 + (NativeRouterViewController *)sharedInstance;
 
