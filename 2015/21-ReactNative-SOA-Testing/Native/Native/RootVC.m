@@ -7,6 +7,7 @@
 //
 
 #import "RootVC.h"
+#import "VC1ViewController.h"
 
 @interface RootVC ()
 
@@ -23,13 +24,16 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:28.0f];
     label.text = @"Root";
+    label.userInteractionEnabled = YES;
     [self.view addSubview:label];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    [label addGestureRecognizer:tap];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)tap {
+    VC1ViewController *newVC = [[VC1ViewController alloc] init];
+    [self.navigationController pushViewController:newVC animated:YES];
 }
 
 @end
