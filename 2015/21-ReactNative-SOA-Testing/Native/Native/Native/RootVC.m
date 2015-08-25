@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.view.backgroundColor = [UIColor whiteColor];
+
     UILabel *label = [[UILabel alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:28.0f];
