@@ -13,6 +13,6 @@
 
 + (NativeRouterViewController *)sharedInstance;
 
-- (instancetype)initWithRoutes:(NSDictionary *)routes startingWith:(NSString *)root;
+- (instancetype)initWith:(NSString *)root;
 
 @end

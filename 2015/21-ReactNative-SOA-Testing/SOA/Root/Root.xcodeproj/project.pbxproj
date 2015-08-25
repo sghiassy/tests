@@ -23,6 +23,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		AA25F7451B8CE16000C1E591 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = AA25F7441B8CE16000C1E591 /* Routes.m */; };
 		AA9C095A1B8BECE400ED9BCD /* NativeRouterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9C09591B8BECE400ED9BCD /* NativeRouterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +129,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		AA25F7431B8CE16000C1E591 /* Routes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Routes.h; path = iOS/Routes.h; sourceTree = "<group>"; };
+		AA25F7441B8CE16000C1E591 /* Routes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Routes.m; path = iOS/Routes.m; sourceTree = "<group>"; };
 		AA9C09581B8BECE400ED9BCD /* NativeRouterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NativeRouterViewController.h; path = iOS/NativeRouterViewController.h; sourceTree = "<group>"; };
 		AA9C09591B8BECE400ED9BCD /* NativeRouterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NativeRouterViewController.m; path = iOS/NativeRouterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -239,8 +242,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				AA9C09581B8BECE400ED9BCD /* NativeRouterViewController.h */,
-				AA9C09591B8BECE400ED9BCD /* NativeRouterViewController.m */,
+				AA25F7501B8CE16300C1E591 /* Routes */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -309,6 +311,17 @@
 				00E356EE1AD99517003FC87E /* RootTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AA25F7501B8CE16300C1E591 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				AA9C09581B8BECE400ED9BCD /* NativeRouterViewController.h */,
+				AA9C09591B8BECE400ED9BCD /* NativeRouterViewController.m */,
+				AA25F7431B8CE16000C1E591 /* Routes.h */,
+				AA25F7441B8CE16000C1E591 /* Routes.m */,
+			);
+			name = Routes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA9C095A1B8BECE400ED9BCD /* NativeRouterViewController.m in Sources */,
+				AA25F7451B8CE16000C1E591 /* Routes.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);

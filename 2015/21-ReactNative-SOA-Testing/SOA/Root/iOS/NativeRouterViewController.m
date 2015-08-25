@@ -8,6 +8,7 @@
 
 #import "NativeRouterViewController.h"
 #import "RCTRootView.h"
+#import "Routes.h"
 
 
 @interface NativeRouterViewController ()
@@ -36,11 +37,11 @@ RCT_EXPORT_MODULE()
   return instance;
 }
 
-- (instancetype)initWithRoutes:(NSDictionary *)routes startingWith:(NSString *)root {
+- (instancetype)initWith:(NSString *)root {
   self = [super init];
 
   if (self) {
-    _routes = routes.copy;
+    _routes = [Routes routes];
     _routeHistory = [[NSMutableArray alloc] init];
 
     [self GET:root headers:nil withDisplayCallback:^(UIView *newView) {
