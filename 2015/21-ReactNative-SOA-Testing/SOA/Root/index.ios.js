@@ -32,7 +32,7 @@ var Root = React.createClass({
 
   press: function() {
     NativeRouterViewController.GET('View1', null, function(err, res) {
-
+      
     });
   }
 });

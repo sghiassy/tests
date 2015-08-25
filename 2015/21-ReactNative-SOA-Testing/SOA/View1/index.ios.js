@@ -7,11 +7,7 @@
 var React = require('react-native');
 var NativeRouterViewController = require('NativeModules').NativeRouterViewController;
 var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+  AppRegistry, StyleSheet, Text, TouchableOpacity, View
 } = React;
 
 var View1 = React.createClass({
@@ -35,9 +31,7 @@ var View1 = React.createClass({
   },
 
   press: function() {
-    NativeRouterViewController.GET('View2', null, function(err, res) {
-
-    });
+    NativeRouterViewController.GET('View2', null, function(err, res) {});
   }
 });
 
