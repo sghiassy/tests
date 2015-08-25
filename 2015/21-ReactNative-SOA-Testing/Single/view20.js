@@ -1,15 +1,15 @@
 var React = require('react-native');
-var { StyleSheet, Text, View, TouchableOpacity } = React;
+var {
+  StyleSheet, Text, View, TouchableOpacity
+} = React;
 
-class View1 extends React.Component {
+class View2 extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={this.props.onForward}>
-          <Text style={styles.welcome}>
-            View 1
-          </Text>
-        </TouchableOpacity>
+        <Text style={styles.welcome}>
+          View 20
+        </Text>
         <TouchableOpacity onPress={this.props.onBack}>
           <Text>Back</Text>
         </TouchableOpacity>
@@ -24,24 +24,23 @@ class View1 extends React.Component {
     );
   }
 }
-
 var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 10
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
-  },
+    marginBottom: 5
+  }
 });
 
-module.exports = View1;
+module.exports = View2;

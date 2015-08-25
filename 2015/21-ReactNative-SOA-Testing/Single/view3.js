@@ -1,13 +1,13 @@
 var React = require('react-native');
 var { StyleSheet, Text, View, TouchableOpacity } = React;
 
-class View1 extends React.Component {
+class View2 extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.props.onForward}>
           <Text style={styles.welcome}>
-            View 1
+            View 3
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={this.props.onBack}>
@@ -44,4 +44,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = View1;
+module.exports = View2;
