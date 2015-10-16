@@ -1,0 +1,10 @@
+{
+  "name": "todo",
+  "version": "0.1.0",
+  "dependencies": {
+    "ronin": "^0.1.2"
+  },
+  "bin": {
+    "todo": "./bin/todo"
+  }
+}
