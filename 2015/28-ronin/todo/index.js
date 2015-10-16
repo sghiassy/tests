@@ -2,7 +2,7 @@ var ronin = require('ronin');
 
 var program = ronin({
   path: __dirname,
-  desc: 'Program description'
+  desc: 'Simple todo app'
 });
 
 program.run();
