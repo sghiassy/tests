@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "jstransform --strip-types --harmony --watch src/ build/"
+    "start": "jstransform --strip-types --harmony --watch src/ build/",
+    "test": "flow"
   },
   "author": "",
   "license": "ISC"
