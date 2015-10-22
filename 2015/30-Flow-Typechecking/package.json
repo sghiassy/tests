@@ -1,0 +1,11 @@
+{
+  "name": "flow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "jstransform --strip-types --harmony --watch src/ build/"
+  },
+  "author": "",
+  "license": "ISC"
+}
