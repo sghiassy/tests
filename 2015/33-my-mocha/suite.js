@@ -47,7 +47,7 @@ class Suite {
 
     // Iteratively go through all the sub-suites
     for (var j = 0; j < this.suites.length; j++) {
-      let currentSuite = this.suites[i];
+      let currentSuite = this.suites[j];
 
       if (!currentSuite.allTestsAndSuitesHaveCompleted) {
         currentSuite.tickTock.call(currentSuite);
