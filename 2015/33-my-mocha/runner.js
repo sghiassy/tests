@@ -24,8 +24,7 @@ global.describe = function(title, fn) {
 global.it = function(title, fn) {
   var test = new Test({
     title: title,
-    fn: fn,
-    isAsync: fn.length === 1 // see if the done function was specified in the function's arguments
+    fn: fn
   });
 
   activeSuite.tests.push(test);
@@ -48,10 +47,6 @@ class Runner {
 
     // Kick off the testing
     rootSuite.run.call(rootSuite);
-  }
-
-  run(files) {
-
   }
 }
 

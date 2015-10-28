@@ -24,12 +24,22 @@ class Suite {
     // Now that all the tests have been collected, run them
     this.tests.forEach((test) => {
       console.log(test.title);
+
+      // Create the done function
+      var done = function() {
+        test.testIsCompleted = true;
+      }
+
       try {
-        test.fn.call(this);
+        if (test.isAsync) {
+          test.fn.call(this, done);
+        } else {
+          test.fn.call(this);
+          done();
+        }
       } catch(err) {
         console.log(err.message);
       }
-
     });
 
     // Run all the collected suites
