@@ -32,7 +32,7 @@ global.it = function(title, fn) {
 
 class Runner {
   constructor(props) {
-    // Manually setup the root suite
+    // Manually construct the root suite
     var rootSuite = new Suite({
       title: 'root',
       fn: () => {
