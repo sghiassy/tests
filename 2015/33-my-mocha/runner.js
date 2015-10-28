@@ -18,8 +18,7 @@ global.describe = function(title, fn) {
     fn: fn
   });
 
-  // console.log('Global describe called with ', title);
-  suites.push(suite);
+  activeSuite.suites.push(suite);
 };
 
 global.it = function(title, fn) {
@@ -33,16 +32,21 @@ global.it = function(title, fn) {
 
 class Runner {
   constructor(props) {
+    // Manually setup the root suite
+    var rootSuite = new Suite({
+      title: 'root',
+      fn: () => {}
+    });
 
-    // go throught the list of files and require them
+    activeSuite = rootSuite;
+
+    // go through the list of files and require them
     props.files.forEach((file) => {
-      require(file)
+      require(file);
     });
 
-    suites.forEach((suite) => {
-      console.log(suite.title)
-      suite.run.call(suite);
-    });
+    // Kick off the testing
+    rootSuite.run.call(rootSuite);
   }
 
   run(files) {

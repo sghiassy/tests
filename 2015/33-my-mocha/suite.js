@@ -11,22 +11,6 @@ class Suite {
     this.tests = [];
   }
 
-  describe(title, fn) {
-    var suite = new Suite({
-      title: title,
-      fn: fn
-    });
-    this.suites.push(suite);
-  }
-
-  it(title, fn) {
-    var test = new Test({
-      title: title,
-      fn: fn
-    });
-    this.tests.push(test);
-  }
-
   run() {
     global.ee.emit('new-suite-active', this);
 

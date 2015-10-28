@@ -1,27 +1,27 @@
 var should = require('should');
 
-describe("First test suite", function() {
+describe("0 First test suite", function() {
 
-  it("should work", function() {
+  it("1 should work", function() {
     return true;
   });
 
-  it("should not work", function() {
+  it("2 should not work", function() {
     return false;
   });
 
-  it("should use should", function() {
+  it("3 should use should", function() {
 
     (2).should.equal(2);
   });
 
-  it("should fail when should tells it to", function() {
+  it("4 should fail when should tells it to", function() {
     (2).should.equal(4); // <-- this should fail
   });
 
-  this.describe("no idea what a nested describe does", function() {
+  describe("5 no idea what a nested describe does", function() {
 
-    it("I'm a nested it statement, oh jeez", function() {
+    it("6 I'm a nested it statement, oh jeez", function() {
       "test".should.equal("test");
     })
 
@@ -29,28 +29,28 @@ describe("First test suite", function() {
 
 });
 
-describe("Second test suite", function() {
+describe("7 Second test suite", function() {
 
-  it("should work", function() {
+  it("8 should work", function() {
     return true;
   });
 
-  it("should not work", function() {
+  it("9 should not work", function() {
     return false;
   });
 
-  it("should use should", function() {
+  it("10 should use should", function() {
 
     (2).should.equal(2);
   });
 
-  it("should fail when should tells it to", function() {
+  it("11 should fail when should tells it to", function() {
     (2).should.equal(4); // <-- this should fail
   });
 
-  this.describe("no idea what a nested describe does", function() {
+  describe("12 no idea what a nested describe does", function() {
 
-    it("I'm a nested it statement, oh jeez", function() {
+    it("13 I'm a nested it statement, oh jeez", function() {
       "test".should.equal("test");
     })
 
