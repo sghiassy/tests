@@ -4,48 +4,54 @@ var Test = require('./test');
 
 class Suite {
   constructor(props) {
+    // Set values from props
     this.title = props.title;
     this.fn = props.fn;
 
+    // Set default values
     this.suites = [];
     this.tests = [];
+    this.hasBeenCalledOnce = false;
   }
 
-  run() {
-    // let the runnner know that a new suite became active
-    // this is necessary to properly redirect global functions to the right class
-    global.ee.emit('newSuiteDidBecomeActive', this);
+  runOnce() {
+    if (this.hasBeenCalledOnce === false) {
+      this.hasBeenCalledOnce = true;
 
-    // run the suites function to capture new describe/it functions.
-    // The relevant functions will be picked up globally and assigned to this class externally
-    // A wierd process, but necessary to keep the api pretty for end-users
-    this.fn();
+      // let the runnner know that a new suite became active
+      // this is necessary to properly redirect global functions to the right class
+      global.ee.emit('newSuiteDidBecomeActive', this);
 
-    // Now that all the tests have been collected, run them
-    this.tests.forEach((test) => {
-      console.log(test.title);
+      // run the suites function to capture new describe/it functions.
+      // The relevant functions will be picked up globally and assigned to this class externally
+      // A wierd process, but necessary to keep the api pretty for end-users
+      this.fn();
+    }
+  }
 
-      // Create the done function
-      var done = function() {
-        test.testIsCompleted = true;
+  tickTock() {
+    this.runOnce();
+
+    var testToRun = undefined;
+
+    for (var i = 0; i < this.tests.length; i++) {
+      let currentTest = this.tests[i];
+
+      if (!currentTest.testIsCompleted) {
+        testToRun = currentTest;
+        break;
       }
+    }
 
-      try {
-        if (test.isAsync) {
-          test.fn.call(this, done);
-        } else {
-          test.fn.call(this);
-          done();
-        }
-      } catch(err) {
-        console.log(err.message);
-      }
-    });
+    if (testToRun) {
+      testToRun.runTest();
+      return;
+    }
 
     // Run all the collected suites
     this.suites.forEach((suite) => {
       console.log(suite.title);
-      suite.run.call(suite);
+      suite.tickTock.call(suite);
     });
   }
 }

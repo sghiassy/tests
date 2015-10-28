@@ -40,13 +40,18 @@ class Runner {
 
     activeSuite = rootSuite;
 
-    // go through the list of files and require them
+    // Go through the list of files and require them
     props.files.forEach((file) => {
       require(file);
     });
 
-    // Kick off the testing
-    rootSuite.run.call(rootSuite);
+    setInterval(() => {
+      this.runLoop(); // Kick off the run loop
+    }, 500);
+  }
+
+  runLoop() {
+    activeSuite.tickTock.call(activeSuite);
   }
 }
 

@@ -10,6 +10,26 @@ class Test {
     // Setup default values
     this.testIsCompleted = false;
   }
+
+  runTest() {
+    console.log(this.title);
+
+    // Create the done function
+    var done = () => {
+      this.testIsCompleted = true;
+    }
+
+    try {
+      if (this.isAsync) {
+        this.fn.call(this, done);
+      } else {
+        this.fn.call(this);
+        done();
+      }
+    } catch(err) {
+      console.log(err.message);
+    }
+  }
 }
 
 module.exports = Test;
