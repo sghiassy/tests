@@ -24,7 +24,8 @@ global.describe = function(title, fn) {
 global.it = function(title, fn) {
   var test = new Test({
     title: title,
-    fn: fn
+    fn: fn,
+    isAsync: fn.length === 1 // see if the done function was specified in the function's arguments
   });
 
   activeSuite.tests.push(test);

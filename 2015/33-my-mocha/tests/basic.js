@@ -10,9 +10,9 @@ describe("0 First test suite", function() {
     return false;
   });
 
-  it("3 should use should", function() {
-
+  it("3 is using a done argument", function(done) {
     (2).should.equal(2);
+    done();
   });
 
   it("4 should fail when should tells it to", function() {
