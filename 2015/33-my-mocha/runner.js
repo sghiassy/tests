@@ -16,8 +16,12 @@ global.describe = function(title, fn) {
 
 class Runner {
   constructor(props) {
-    // this.files = props.files;
-    this.run(props.files);
+
+    // go throught the list of files and require them
+    props.files.forEach((file) => {
+      require(file)
+    });
+
     suites.forEach((suite) => {
       console.log(suite.title)
       suite.run.call(suite);
@@ -25,10 +29,7 @@ class Runner {
   }
 
   run(files) {
-    // go throught the list of files and require them
-    files.forEach((file) => {
-      require(file)
-    });
+
   }
 }
 
