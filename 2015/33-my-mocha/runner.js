@@ -35,15 +35,15 @@ class Runner {
     // Manually setup the root suite
     var rootSuite = new Suite({
       title: 'root',
-      fn: () => {}
+      fn: () => {
+        // Go through the list of files and require them
+        props.files.forEach((file) => {
+          require(file);
+        });
+      }
     });
 
     activeSuite = rootSuite;
-
-    // Go through the list of files and require them
-    props.files.forEach((file) => {
-      require(file);
-    });
 
     setInterval(() => {
       this.runLoop(); // Kick off the run loop

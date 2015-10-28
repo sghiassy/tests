@@ -11,12 +11,15 @@ class Suite {
     // Set default values
     this.suites = [];
     this.tests = [];
-    this.hasBeenCalledOnce = false;
+
+    // State values (I hate state this way)
+    this.setupHasCompleted = false;
+    this.allTestsAndSuitesHaveCompleted = false;
   }
 
   runOnce() {
-    if (this.hasBeenCalledOnce === false) {
-      this.hasBeenCalledOnce = true;
+    if (this.setupHasCompleted === false) {
+      this.setupHasCompleted = true;
 
       // let the runnner know that a new suite became active
       // this is necessary to properly redirect global functions to the right class
@@ -32,27 +35,30 @@ class Suite {
   tickTock() {
     this.runOnce();
 
-    var testToRun = undefined;
-
+    // Iteratively go through all the sub-tests
     for (var i = 0; i < this.tests.length; i++) {
       let currentTest = this.tests[i];
 
       if (!currentTest.testIsCompleted) {
-        testToRun = currentTest;
-        break;
+        currentTest.runTest();
+        return;
       }
     }
 
-    if (testToRun) {
-      testToRun.runTest();
-      return;
+    // Iteratively go through all the sub-suites
+    for (var j = 0; j < this.suites.length; j++) {
+      let currentSuite = this.suites[i];
+
+      if (!currentSuite.allTestsAndSuitesHaveCompleted) {
+        currentSuite.tickTock.call(currentSuite);
+        return;
+      }
     }
 
-    // Run all the collected suites
-    this.suites.forEach((suite) => {
-      console.log(suite.title);
-      suite.tickTock.call(suite);
-    });
+    // If we get to this point in the code, it means we have no more sub-tests
+    // and sub-suites that need to be called;
+    // Don't like this, because it relies on early exits above :(
+    this.allTestsAndSuitesHaveCompleted = true;
   }
 }
 

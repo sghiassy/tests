@@ -28,6 +28,7 @@ class Test {
       }
     } catch(err) {
       console.log(err.message);
+      done();
     }
   }
 }
