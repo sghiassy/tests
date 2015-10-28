@@ -42,7 +42,7 @@ class Suite {
 
     this.suites.forEach((suite) => {
       console.log(suite.title);
-      suite.fn.call(suite);
+      suite.run.call(suite);
     });
   }
 }
