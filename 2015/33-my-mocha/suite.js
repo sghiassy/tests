@@ -12,11 +12,16 @@ class Suite {
   }
 
   run() {
-    global.ee.emit('new-suite-active', this);
+    // let the runnner know that a new suite became active
+    // this is necessary to properly redirect global functions to the right class
+    global.ee.emit('newSuiteDidBecomeActive', this);
 
-    this.fn(); // run the suites function to capture new describe/it functions (note, they will be picked up globally);
+    // run the suites function to capture new describe/it functions.
+    // The relevant functions will be picked up globally and assigned to this class externally
+    // A wierd process, but necessary to keep the api pretty for end-users
+    this.fn();
 
-    // Run all the collected tests
+    // Now that all the tests have been collected, run them
     this.tests.forEach((test) => {
       console.log(test.title);
       try {

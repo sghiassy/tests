@@ -8,7 +8,7 @@ global.ee = new EventEmitter();
 var suites = [];
 var activeSuite;
 
-ee.on('new-suite-active', function(suite) {
+ee.on('newSuiteDidBecomeActive', function(suite) {
   activeSuite = suite;
 });
 
