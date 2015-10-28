@@ -28,8 +28,11 @@ class Suite {
   }
 
   run() {
-    this.fn();
+    global.ee.emit('new-suite-active', this);
 
+    this.fn(); // run the suites function to capture new describe/it functions (note, they will be picked up globally);
+
+    // Run all the collected tests
     this.tests.forEach((test) => {
       console.log(test.title);
       try {
@@ -40,6 +43,7 @@ class Suite {
 
     });
 
+    // Run all the collected suites
     this.suites.forEach((suite) => {
       console.log(suite.title);
       suite.run.call(suite);
