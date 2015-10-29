@@ -77,7 +77,4 @@ class Suite {
   }
 }
 
-// Set class variables and Methods
-Suite.STATES = STATES;
-
 module.exports = Suite;
