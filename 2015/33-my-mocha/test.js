@@ -28,7 +28,7 @@ class Test {
 
     // Create the done function
     var done = () => {
-      this.testTimer = new Date().getTime() - this.testTimer; // calculate the test's duration
+      this.testTimer = new Date().getTime() - this.testTimer; // calculate the test's duration against the start time
       this.currentState = STATES.TEST_COMPLETED;
     }
 
@@ -44,12 +44,12 @@ class Test {
       }
 
       return;
-    } else {
-      this.currentState = STATES.TEST_STARTED;
-      this.testTimer = new Date().getTime(); // start the timer
     }
 
     console.log(this.title);
+
+    this.currentState = STATES.TEST_STARTED;
+    this.testTimer = new Date().getTime(); // start the timer
 
     try {
       if (this.isAsync) {
