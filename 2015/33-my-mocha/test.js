@@ -47,12 +47,13 @@ class Test {
       return;
     }
 
-    console.log(this.title);
-
     this.currentState = STATES.TEST_STARTED;
     this.testTimer = new Date().getTime(); // start the timer
 
     this.runAllBeforeEach();
+
+    console.log(this.title);
+
     try {
       if (this.isAsync) {
         this.fn.call(this, done);
@@ -69,6 +70,7 @@ class Test {
   }
 
   runAllBeforeEach() {
+    debugger
     var currentSuite = this.parentSuite;
     while (currentSuite !== undefined) {
       currentSuite.beforeEachHooks.forEach((beforeEachHook)=>{

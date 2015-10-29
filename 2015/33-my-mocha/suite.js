@@ -14,6 +14,7 @@ class Suite {
     // Set values from props
     this.title = props.title;
     this.fn = props.fn;
+    this.parentSuite = props.parentSuite;
 
     // Set default values
     this.suites = [];
