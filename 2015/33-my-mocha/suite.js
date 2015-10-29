@@ -46,8 +46,6 @@ class Suite {
         beforeHook.fn.call(beforeHook);
       });
 
-      this.runAllBeforeEach(this.parentSuite);
-
       this.currentState = STATES.SETUP_COMPLETED;
     }
   }
@@ -88,8 +86,6 @@ class Suite {
     this.afterHooks.forEach((afterHook) => {
       afterHook.fn.call(afterHook);
     });
-
-    this.runAllAfterEach(this.parentSuite);
 
     ee.emit('suiteDidFinish', this);
 
