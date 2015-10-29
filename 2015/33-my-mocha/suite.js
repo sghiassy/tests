@@ -25,14 +25,12 @@ class Suite {
     this.currentState = STATES.NOT_STARTED;
   }
 
-  runOnce() {
-    var setupHasCompleted = this.currentState >= STATES.SUITE_COMPLETED;
+  setup() {
+    var setupHasCompleted = this.currentState >= STATES.SETUP_COMPLETED;
 
     if (!setupHasCompleted) {
 
       console.log(this.title);
-
-      this.currentState = STATES.SUITE_COMPLETED;
 
       // let the runnner know that a new suite became active
       // this is necessary to properly redirect global functions to the right class
@@ -42,11 +40,17 @@ class Suite {
       // The relevant functions will be picked up globally and assigned to this class externally
       // A wierd process, but necessary to keep the api pretty for end-users
       this.fn();
+
+      this.beforeHooks.forEach((beforeHook) => {
+        beforeHook.fn.call(beforeHook);
+      });
+
+      this.currentState = STATES.SETUP_COMPLETED;
     }
   }
 
   tickTock() {
-    this.runOnce();
+    this.setup();
 
     // Iteratively go through all the sub-tests
     for (var i = 0; i < this.tests.length; i++) {

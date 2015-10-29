@@ -34,36 +34,36 @@ global.it = function(title, fn) {
   suiteQueue[0].tests.push(test);
 };
 
-global.before = function(title, fn) {
+global.before = function(fn) {
   var beforeHook = new Hook({
-    title: title,
+    title: 'before',
     fn: fn
   });
 
   suiteQueue[0].beforeHooks.push(beforeHook);
 };
 
-global.after = function(title, fn) {
+global.after = function(fn) {
   var afterHook = new Hook({
-    title: title,
+    title: 'after',
     fn: fn
   });
 
   suiteQueue[0].afterHooks.push(afterHook);
 };
 
-global.beforeEach = function(title, fn) {
+global.beforeEach = function(fn) {
   var beforeEachHook = new Hook({
-    title: title,
+    title: 'beforeEach',
     fn: fn
   });
 
   suiteQueue[0].beforeEachHooks.push(beforeEachHook);
 };
 
-global.afterEach = function(title, fn) {
+global.afterEach = function(fn) {
   var afterEachHook = new Hook({
-    title: title,
+    title: 'afterEach',
     fn: fn
   });
 
@@ -88,7 +88,7 @@ class Runner {
     // Start the runloop
     this.refreshIntervalId = setInterval(() => {
       this.runLoop();
-    }, 25);
+    }, 20);
   }
 
   runLoop() {
