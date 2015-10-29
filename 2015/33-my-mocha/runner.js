@@ -2,6 +2,7 @@
 
 var Suite = require('./suite');
 var Test = require('./test');
+var Hook = require('./hook');
 var EventEmitter = require("events").EventEmitter;
 global.ee = new EventEmitter();
 
@@ -31,6 +32,42 @@ global.it = function(title, fn) {
   });
 
   suiteQueue[0].tests.push(test);
+};
+
+global.before = function(title, fn) {
+  var beforeHook = new Hook({
+    title: title,
+    fn: fn
+  });
+
+  suiteQueue[0].beforeHooks.push(beforeHook);
+};
+
+global.after = function(title, fn) {
+  var afterHook = new Hook({
+    title: title,
+    fn: fn
+  });
+
+  suiteQueue[0].afterHooks.push(afterHook);
+};
+
+global.beforeEach = function(title, fn) {
+  var beforeEachHook = new Hook({
+    title: title,
+    fn: fn
+  });
+
+  suiteQueue[0].beforeEachHooks.push(beforeEachHook);
+};
+
+global.afterEach = function(title, fn) {
+  var afterEachHook = new Hook({
+    title: title,
+    fn: fn
+  });
+
+  suiteQueue[0].afterEachHooks.push(afterEachHook);
 };
 
 class Runner {

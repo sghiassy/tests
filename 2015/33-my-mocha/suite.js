@@ -5,8 +5,8 @@ var Test = require('./test');
 var STATES = {
   NOT_STARTED: 0.1,     // using floats instead of ints so that
   SETUP_COMPLETED: 0.2, // these state "enums" don't accidently
-  SUITE_COMPLETED: 0.3, // get used for test states. Tests and Suites have
-                        // different states
+  SUITE_COMPLETED: 0.3, // get confused for test states. Tests and
+                        // Suites have different states
 }
 
 class Suite {
@@ -18,8 +18,10 @@ class Suite {
     // Set default values
     this.suites = [];
     this.tests = [];
-
-    // State values (I hate state this way)
+    this.beforeHooks = [];
+    this.afterHooks = [];
+    this.beforeEachHooks = [];
+    this.afterEachHooks = [];
     this.currentState = STATES.NOT_STARTED;
   }
 
