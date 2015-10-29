@@ -1,5 +1,11 @@
 'use strict';
 
+var STATES = {
+  NOT_STARTED: 0,
+  TEST_STARTED: 1,
+  TEST_COMPLETED: 2
+}
+
 class Test {
   constructor(props) {
     // Assign values from props
@@ -9,9 +15,18 @@ class Test {
 
     // Setup default values
     this.testIsCompleted = false;
+    this.testHasBeenExecuted = false;
   }
 
   runTest() {
+    if (this.testHasBeenExecuted) {
+      // Because of how the run loop works, the run test command will be called
+      // on every setInterval
+      return;
+    } else {
+      this.testHasBeenExecuted = true;
+    }
+
     console.log(this.title);
 
     // Create the done function
@@ -26,7 +41,7 @@ class Test {
         this.fn.call(this);
         done();
       }
-    } catch(err) {
+    } catch (err) {
       console.log(err.message);
       done();
     }

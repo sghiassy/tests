@@ -12,6 +12,7 @@ describe("0 First test suite", function() {
 
   it("3 is using a done argument", function(done) {
     (2).should.equal(2);
+    console.log('test 3 was called');
     setTimeout(done, 5000);
   });
 
