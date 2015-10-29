@@ -8,11 +8,11 @@ global.ee = new EventEmitter();
 var activeSuite = [];
 
 ee.on('newSuiteDidBecomeActive', function(suite) {
-  activeSuite.push(suite);
+  activeSuite.unshift(suite);
 });
 
 ee.on('suiteDidFinish', function(suite) {
-  activeSuite.pop();
+  activeSuite.shift();
 });
 
 global.describe = function(title, fn) {
