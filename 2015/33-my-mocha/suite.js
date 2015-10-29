@@ -2,6 +2,13 @@
 
 var Test = require('./test');
 
+var STATES = {
+  NOT_STARTED: 0.1,     // using floats instead of ints so that
+  SETUP_COMPLETED: 0.2, // these state "enums" don't accidently
+  SUITE_COMPLETED: 0.3, // get used for test states. Tests and Suites have
+                        // different states
+}
+
 class Suite {
   constructor(props) {
     // Set values from props
@@ -13,16 +20,17 @@ class Suite {
     this.tests = [];
 
     // State values (I hate state this way)
-    this.setupHasCompleted = false;
-    this.allTestsAndSuitesHaveCompleted = false;
+    this.currentState = STATES.NOT_STARTED;
   }
 
   runOnce() {
-    if (this.setupHasCompleted === false) {
+    var setupHasCompleted = this.currentState >= STATES.SUITE_COMPLETED;
+
+    if (!setupHasCompleted) {
 
       console.log(this.title);
 
-      this.setupHasCompleted = true;
+      this.currentState = STATES.SUITE_COMPLETED;
 
       // let the runnner know that a new suite became active
       // this is necessary to properly redirect global functions to the right class
@@ -52,8 +60,9 @@ class Suite {
     // Iteratively go through all the sub-suites
     for (var j = 0; j < this.suites.length; j++) {
       let currentSuite = this.suites[j];
+      let currentSuiteHasCompleted = currentSuite.currentState === STATES.SUITE_COMPLETED
 
-      if (!currentSuite.allTestsAndSuitesHaveCompleted) {
+      if (!currentSuiteHasCompleted) {
         currentSuite.tickTock.call(currentSuite);
         return;
       }
@@ -62,10 +71,13 @@ class Suite {
     // If we get to this point in the code, it means we have no more sub-tests
     // and sub-suites that need to be called;
     // Don't like this, because it relies on early exits above :(
-    this.allTestsAndSuitesHaveCompleted = true;
+    this.currentState = STATES.SUITE_COMPLETED;
 
     ee.emit('suiteDidFinish', this);
   }
 }
+
+// Set class variables and Methods
+Suite.STATES = STATES;
 
 module.exports = Suite;
