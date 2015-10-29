@@ -63,6 +63,8 @@ class Test {
     } catch (err) {
       console.log(err.message);
       done();
+    } finally {
+      this.runAllAfterEach();
     }
   }
 
@@ -71,6 +73,17 @@ class Test {
     while (currentSuite !== undefined) {
       currentSuite.beforeEachHooks.forEach((beforeEachHook)=>{
         beforeEachHook.fn.call(beforeEachHook);
+      });
+
+      currentSuite = currentSuite.parentSuite;
+    }
+  }
+
+  runAllAfterEach() {
+    var currentSuite = this.parentSuite;
+    while (currentSuite !== undefined) {
+      currentSuite.afterEachHooks.forEach((afterEachHook)=>{
+        afterEachHook.fn.call(afterEachHook);
       });
 
       currentSuite = currentSuite.parentSuite;
