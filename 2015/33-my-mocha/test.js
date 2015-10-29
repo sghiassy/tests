@@ -14,24 +14,31 @@ class Test {
     this.isAsync = props.fn.length === 1 // see if the done function was specified in the function's arguments
 
     // Setup default values
-    this.testIsCompleted = false;
-    this.testHasBeenExecuted = false;
+    this.currentState = STATES.NOT_STARTED;
   }
 
   runTest() {
-    if (this.testHasBeenExecuted) {
+    var testAlreadyCompleted = this.currentState === STATES.TEST_COMPLETED;
+    var testInProgress = this.currentState === STATES.TEST_STARTED;
+
+    if (testAlreadyCompleted) {
+      throw "3edfr5t: Why is this being called";
+    }
+
+    if (testInProgress) {
       // Because of how the run loop works, the run test command will be called
-      // on every setInterval
+      // on every setInterval so for long-running tests, this command will
+      // rightfully be called many times
       return;
     } else {
-      this.testHasBeenExecuted = true;
+      this.currentState = STATES.TEST_STARTED;
     }
 
     console.log(this.title);
 
     // Create the done function
     var done = () => {
-      this.testIsCompleted = true;
+      this.currentState = STATES.TEST_COMPLETED;
     }
 
     try {
@@ -47,5 +54,8 @@ class Test {
     }
   }
 }
+
+// Set Class Methods & Variables
+Test.STATES = STATES;
 
 module.exports = Test;

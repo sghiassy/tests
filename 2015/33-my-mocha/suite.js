@@ -41,8 +41,9 @@ class Suite {
     // Iteratively go through all the sub-tests
     for (var i = 0; i < this.tests.length; i++) {
       let currentTest = this.tests[i];
+      let currentTestHasCompleted = currentTest.currentState === Test.STATES.TEST_COMPLETED;
 
-      if (!currentTest.testIsCompleted) {
+      if (!currentTestHasCompleted) {
         currentTest.runTest();
         return;
       }
