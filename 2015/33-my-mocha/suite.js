@@ -105,7 +105,7 @@ class Suite {
     var hooksToRun = [];
 
     while (currentSuite !== undefined) {
-      hooksToRun = currentSuite.beforeEachHooks.concat(hooksToRun);
+      hooksToRun = currentSuite.beforeEachHooks.concat(hooksToRun); // take the current hooks and put them at the beginning of the array
 
       currentSuite = currentSuite.parentSuite;
     }
@@ -130,10 +130,6 @@ class Suite {
 
       currentSuite = currentSuite.parentSuite;
     }
-
-    hooksToRun.forEach((afterEachHook) => {
-      afterEachHook.fn.call(afterEachHook);
-    });
   }
 }
 
