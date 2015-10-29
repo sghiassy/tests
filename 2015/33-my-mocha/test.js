@@ -50,10 +50,6 @@ class Test {
     this.currentState = STATES.TEST_STARTED;
     this.testTimer = new Date().getTime(); // start the timer
 
-    if (this.title === "firstSuite test2") {
-      debugger
-    }
-
     this.parentSuite.runAllBeforeEach(this.parentSuite);
 
     console.log(this.title);

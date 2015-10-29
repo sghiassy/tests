@@ -76,7 +76,7 @@ class Runner {
   constructor(props) {
     // Manually construct the root suite to kick things off
     var rootSuite = new Suite({
-      title: 'root',
+      title: '',
       parentSuite: undefined, // undefined since we're root
       fn: () => {
         // Go through the list of files and require them
