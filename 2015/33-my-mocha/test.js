@@ -11,6 +11,7 @@ class Test {
     // Assign values from props
     this.title = props.title;
     this.fn = props.fn;
+    this.parentSuite = props.parentSuite;
     this.isAsync = props.fn.length === 1 // see if the done function was specified in the function's arguments
 
     // Setup default values
@@ -51,6 +52,7 @@ class Test {
     this.currentState = STATES.TEST_STARTED;
     this.testTimer = new Date().getTime(); // start the timer
 
+    this.runAllBeforeEach();
     try {
       if (this.isAsync) {
         this.fn.call(this, done);
@@ -61,6 +63,17 @@ class Test {
     } catch (err) {
       console.log(err.message);
       done();
+    }
+  }
+
+  runAllBeforeEach() {
+    var currentSuite = this.parentSuite;
+    while (currentSuite !== undefined) {
+      currentSuite.beforeEachHooks.forEach((beforeEachHook)=>{
+        beforeEachHook.fn.call(beforeEachHook);
+      });
+
+      currentSuite = currentSuite.parentSuite;
     }
   }
 }

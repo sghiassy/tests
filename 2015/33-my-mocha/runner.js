@@ -19,7 +19,8 @@ ee.on('suiteDidFinish', function(suite) {
 global.describe = function(title, fn) {
   var suite = new Suite({
     title: title,
-    fn: fn
+    fn: fn,
+    parentSuite: suiteQueue[0]
   });
 
   suiteQueue[0].suites.push(suite);
@@ -28,7 +29,8 @@ global.describe = function(title, fn) {
 global.it = function(title, fn) {
   var test = new Test({
     title: title,
-    fn: fn
+    fn: fn,
+    parentSuite: suiteQueue[0]
   });
 
   suiteQueue[0].tests.push(test);
@@ -75,6 +77,7 @@ class Runner {
     // Manually construct the root suite to kick things off
     var rootSuite = new Suite({
       title: 'root',
+      parentSuite: undefined, // undefined since we're root
       fn: () => {
         // Go through the list of files and require them
         props.files.forEach((file) => {
