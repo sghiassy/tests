@@ -5,14 +5,14 @@ var Test = require('./test');
 var EventEmitter = require("events").EventEmitter;
 global.ee = new EventEmitter();
 
-var activeSuite = [];
+var suiteQueue = [];
 
 ee.on('newSuiteDidBecomeActive', function(suite) {
-  activeSuite.unshift(suite);
+  suiteQueue.unshift(suite);
 });
 
 ee.on('suiteDidFinish', function(suite) {
-  activeSuite.shift();
+  suiteQueue.shift();
 });
 
 global.describe = function(title, fn) {
@@ -21,7 +21,7 @@ global.describe = function(title, fn) {
     fn: fn
   });
 
-  activeSuite[0].suites.push(suite);
+  suiteQueue[0].suites.push(suite);
 };
 
 global.it = function(title, fn) {
@@ -30,12 +30,12 @@ global.it = function(title, fn) {
     fn: fn
   });
 
-  activeSuite[0].tests.push(test);
+  suiteQueue[0].tests.push(test);
 };
 
 class Runner {
   constructor(props) {
-    // Manually construct the root suite
+    // Manually construct the root suite to kick things off
     var rootSuite = new Suite({
       title: 'root',
       fn: () => {
@@ -46,18 +46,19 @@ class Runner {
       }
     });
 
-    activeSuite.push(rootSuite);
+    suiteQueue.push(rootSuite);
 
+    // Start the runloop
     this.refreshIntervalId = setInterval(() => {
-      this.runLoop(); // Kick off the run loop
+      this.runLoop();
     }, 50);
   }
 
   runLoop() {
-    var finishedRunningAllSuites = activeSuite[0] === undefined;
+    var allSuitesHaveCompleted = suiteQueue[0] === undefined;
 
-    if (!finishedRunningAllSuites) {
-      activeSuite[0].tickTock.call(activeSuite[0]);
+    if (!allSuitesHaveCompleted) {
+      suiteQueue[0].tickTock.call(suiteQueue[0]);
     } else {
       console.log("All tests have completed");
       clearInterval(this.refreshIntervalId); // all done. Stop
