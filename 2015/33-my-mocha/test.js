@@ -3,7 +3,8 @@
 var STATES = {
   NOT_STARTED: 0,
   TEST_STARTED: 1,
-  TEST_COMPLETED: 2
+  TEST_SKIPPED: 2,
+  TEST_COMPLETED: 3,
 }
 
 class Test {
@@ -11,6 +12,7 @@ class Test {
     // Assign values from props
     this.title = props.title;
     this.fn = props.fn;
+    this.shouldSkip = props.shouldSkip || false;
     this.parentSuite = props.parentSuite;
     this.isAsync = props.fn.length === 1 // see if the done function was specified in the function's arguments
 
@@ -20,9 +22,15 @@ class Test {
   }
 
   runTest() {
-    var testAlreadyCompleted = this.currentState === STATES.TEST_COMPLETED;
+    var testAlreadyCompleted = this.currentState === STATES.TEST_COMPLETED || this.currentState === STATES.TEST_SKIPPED;
     if (testAlreadyCompleted) {
       throw "edfr5t: Test shouldn't be called since its been marked as completed";
+    }
+
+    if (this.shouldSkip) {
+      console.log("skipped " + this.title);
+      this.markTestAsSkipped();
+      return;
     }
 
     var testInProgress = this.currentState === STATES.TEST_STARTED;
@@ -65,6 +73,11 @@ class Test {
   markTestAsCompleted() {
     this.testTimer = new Date().getTime() - this.testTimer; // calculate the test's duration against the start time
     this.currentState = STATES.TEST_COMPLETED;
+  }
+
+  markTestAsSkipped() {
+    this.testTimer = 0;
+    this.currentState = STATES.TEST_SKIPPED;
   }
 }
 

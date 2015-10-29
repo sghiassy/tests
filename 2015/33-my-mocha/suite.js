@@ -26,6 +26,17 @@ class Suite {
     this.currentState = STATES.NOT_STARTED;
   }
 
+  runLoop() {
+    this.setup();
+    this.runTests(function() {
+      return; // early exit
+    });
+    this.runSuites(function() {
+      return; // early exit
+    });
+    this.tearDown();
+  }
+
   setup() {
     var setupHasCompleted = this.currentState >= STATES.SETUP_COMPLETED;
 
@@ -48,17 +59,6 @@ class Suite {
 
       this.currentState = STATES.SETUP_COMPLETED;
     }
-  }
-
-  runLoop() {
-    this.setup();
-    this.runTests(function() {
-      return; // early exit
-    });
-    this.runSuites(function() {
-      return; // early exit
-    });
-    this.tearDown();
   }
 
   runTests(earlyExit) {

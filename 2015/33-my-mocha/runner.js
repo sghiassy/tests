@@ -38,6 +38,17 @@ global.it = function(title, fn) {
   suiteQueue[0].tests.push(test);
 };
 
+global.it.skip = function(title, fn) {
+  var test = new Test({
+    title: title,
+    fn: fn,
+    shouldSkip: true,
+    parentSuite: suiteQueue[0]
+  });
+
+  suiteQueue[0].tests.push(test);
+};
+
 global.before = function(fn) {
   var beforeHook = new Hook({
     title: 'before',

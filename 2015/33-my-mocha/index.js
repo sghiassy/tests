@@ -4,6 +4,6 @@ var runner = new Runner({
   files: [
     // './tests/basic',
     // './tests/basic2',
-    './tests/beforeAfterTests'
+    './tests/beforeAfterTestsWithSkip'
   ]
 });
