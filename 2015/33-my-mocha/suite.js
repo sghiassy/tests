@@ -19,6 +19,9 @@ class Suite {
 
   runOnce() {
     if (this.setupHasCompleted === false) {
+
+      console.log(this.title);
+
       this.setupHasCompleted = true;
 
       // let the runnner know that a new suite became active

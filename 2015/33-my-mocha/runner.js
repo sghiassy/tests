@@ -50,7 +50,7 @@ class Runner {
 
     this.refreshIntervalId = setInterval(() => {
       this.runLoop(); // Kick off the run loop
-    }, 500);
+    }, 50);
   }
 
   runLoop() {
