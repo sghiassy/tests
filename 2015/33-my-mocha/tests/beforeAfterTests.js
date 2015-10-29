@@ -10,18 +10,6 @@ describe("root", function() {
     console.log('root:before2')
   });
 
-  after(function() {
-    console.log('root:after1');
-  });
-
-  after(function() {
-    console.log('root:after2');
-  });
-
-  after(function() {
-    console.log('root:after3');
-  });
-
   beforeEach(function() {
     console.log('root:beforeEach1')
   });
@@ -144,6 +132,18 @@ describe("root", function() {
 
     it("secondSuite test3", function() {});
 
+  });
+
+  after(function() {
+    console.log('root:after1');
+  });
+
+  after(function() {
+    console.log('root:after2');
+  });
+
+  after(function() {
+    console.log('root:after3');
   });
 
 });

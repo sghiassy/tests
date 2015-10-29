@@ -97,25 +97,31 @@ class Suite {
   }
 
   runAllBeforeEach(currentSuite) {
+    var hooksToRun = [];
 
     while (currentSuite !== undefined) {
-      currentSuite.beforeEachHooks.forEach((beforeEachHook)=>{
-        beforeEachHook.fn.call(beforeEachHook);
-      });
+      hooksToRun = currentSuite.beforeEachHooks.concat(hooksToRun);
 
       currentSuite = currentSuite.parentSuite;
     }
+
+    hooksToRun.forEach((beforeEachHook)=>{
+      beforeEachHook.fn.call(beforeEachHook);
+    });
   }
 
   runAllAfterEach(currentSuite) {
+    var hooksToRun = [];
 
     while (currentSuite !== undefined) {
-      currentSuite.afterEachHooks.forEach((afterEachHook)=>{
-        afterEachHook.fn.call(afterEachHook);
-      });
+      hooksToRun = currentSuite.afterEachHooks.concat(hooksToRun);
 
       currentSuite = currentSuite.parentSuite;
     }
+
+    hooksToRun.forEach((afterEachHook)=>{
+      afterEachHook.fn.call(afterEachHook);
+    });
   }
 }
 

@@ -44,7 +44,7 @@ class Test {
         done();
       }
 
-      return;
+      return; // return early if test in progress
     }
 
     this.currentState = STATES.TEST_STARTED;
