@@ -15,6 +15,7 @@ class Test {
 
     // Setup default values
     this.currentState = STATES.NOT_STARTED;
+    this.testTimer = 0; // the time it takes for a test to complete
   }
 
   runTest() {
@@ -22,24 +23,33 @@ class Test {
     var testInProgress = this.currentState === STATES.TEST_STARTED;
 
     if (testAlreadyCompleted) {
-      throw "3edfr5t: Why is this being called";
+      throw "3edfr5t: Test shouldn't be called since its been marked as completed";
+    }
+
+    // Create the done function
+    var done = () => {
+      this.testTimer = new Date().getTime() - this.testTimer; // calculate the test's duration
+      this.currentState = STATES.TEST_COMPLETED;
     }
 
     if (testInProgress) {
       // Because of how the run loop works, the run test command will be called
       // on every setInterval so for long-running tests, this command will
       // rightfully be called many times
+      var currentDuration = new Date().getTime() - this.testTimer;
+
+      if (currentDuration >= 6000) {
+        console.log("3wsed: Test took to long. Marking as done");
+        done();
+      }
+
       return;
     } else {
       this.currentState = STATES.TEST_STARTED;
+      this.testTimer = new Date().getTime(); // start the timer
     }
 
     console.log(this.title);
-
-    // Create the done function
-    var done = () => {
-      this.currentState = STATES.TEST_COMPLETED;
-    }
 
     try {
       if (this.isAsync) {
