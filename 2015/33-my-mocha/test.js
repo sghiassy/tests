@@ -50,7 +50,7 @@ class Test {
     this.currentState = STATES.TEST_STARTED;
     this.testTimer = new Date().getTime(); // start the timer
 
-    this.runAllBeforeEach();
+    this.parentSuite.runAllBeforeEach(this.parentSuite);
 
     console.log(this.title);
 
@@ -65,30 +65,7 @@ class Test {
       console.log(err.message);
       done();
     } finally {
-      this.runAllAfterEach();
-    }
-  }
-
-  runAllBeforeEach() {
-    debugger
-    var currentSuite = this.parentSuite;
-    while (currentSuite !== undefined) {
-      currentSuite.beforeEachHooks.forEach((beforeEachHook)=>{
-        beforeEachHook.fn.call(beforeEachHook);
-      });
-
-      currentSuite = currentSuite.parentSuite;
-    }
-  }
-
-  runAllAfterEach() {
-    var currentSuite = this.parentSuite;
-    while (currentSuite !== undefined) {
-      currentSuite.afterEachHooks.forEach((afterEachHook)=>{
-        afterEachHook.fn.call(afterEachHook);
-      });
-
-      currentSuite = currentSuite.parentSuite;
+      this.parentSuite.runAllAfterEach(this.parentSuite);
     }
   }
 }

@@ -46,6 +46,8 @@ class Suite {
         beforeHook.fn.call(beforeHook);
       });
 
+      this.runAllBeforeEach(this.parentSuite);
+
       this.currentState = STATES.SETUP_COMPLETED;
     }
   }
@@ -87,9 +89,33 @@ class Suite {
       afterHook.fn.call(afterHook);
     });
 
+    this.runAllAfterEach(this.parentSuite);
+
     ee.emit('suiteDidFinish', this);
 
     this.currentState = STATES.SUITE_COMPLETED;
+  }
+
+  runAllBeforeEach(currentSuite) {
+
+    while (currentSuite !== undefined) {
+      currentSuite.beforeEachHooks.forEach((beforeEachHook)=>{
+        beforeEachHook.fn.call(beforeEachHook);
+      });
+
+      currentSuite = currentSuite.parentSuite;
+    }
+  }
+
+  runAllAfterEach(currentSuite) {
+
+    while (currentSuite !== undefined) {
+      currentSuite.afterEachHooks.forEach((afterEachHook)=>{
+        afterEachHook.fn.call(afterEachHook);
+      });
+
+      currentSuite = currentSuite.parentSuite;
+    }
   }
 }
 
