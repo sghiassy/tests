@@ -3,10 +3,10 @@
 var Test = require('./test');
 
 var STATES = {
-  NOT_STARTED: 0.1,     // using floats instead of ints so that
+  NOT_STARTED: 0.1, // using floats instead of ints so that
   SETUP_COMPLETED: 0.2, // these state "enums" don't accidently
   SUITE_COMPLETED: 0.3, // get confused for test states. Tests and
-                        // Suites have different states
+  // Suites have different states
 }
 
 class Suite {
@@ -14,6 +14,7 @@ class Suite {
     // Set values from props
     this.title = props.title;
     this.fn = props.fn;
+    this.parentSuite = props.parentSuite;
 
     // Set default values
     this.suites = [];
@@ -49,9 +50,18 @@ class Suite {
     }
   }
 
-  tickTock() {
+  runLoop() {
     this.setup();
+    this.runTests(function() {
+      return; // early exit
+    });
+    this.runSuites(function() {
+      return; // early exit
+    });
+    this.tearDown();
+  }
 
+  runTests(earlyExit) {
     // Iteratively go through all the sub-tests
     for (var i = 0; i < this.tests.length; i++) {
       let currentTest = this.tests[i];
@@ -59,26 +69,22 @@ class Suite {
 
       if (!currentTestHasCompleted) {
         currentTest.runTest();
-        return;
+        earlyExit(); // If we start to run a test, then execute the earlyExit function to exit the run loop
       }
     }
+  }
 
+  runSuites(earlyExit) {
     // Iteratively go through all the sub-suites
     for (var j = 0; j < this.suites.length; j++) {
       let currentSuite = this.suites[j];
       let currentSuiteHasCompleted = currentSuite.currentState === STATES.SUITE_COMPLETED
 
       if (!currentSuiteHasCompleted) {
-        currentSuite.tickTock.call(currentSuite);
-        return;
+        currentSuite.runLoop.call(currentSuite);
+        earlyExit(); // If we start to run a suite, then execute the earlyExit function to exit the run loop
       }
     }
-
-    // If we get to this point in the code, it means we have no more sub-tests
-    // and sub-suites that need to be called.
-    // Don't like this, because it relies on early exits above :(
-    // I hate this type of early exit control flow
-    this.tearDown();
   }
 
   tearDown() {
@@ -89,6 +95,44 @@ class Suite {
     ee.emit('suiteDidFinish', this);
 
     this.currentState = STATES.SUITE_COMPLETED;
+  }
+
+  /**
+   * beforeEach hooks run outwards-in. Meaning that beforeEach hooks
+   * at the root execute first and then cascade in towards
+   * child suites. This is different than afterEach hooks
+   */
+  runAllBeforeEach() {
+    var hooksToRun = [];
+    var currentSuite = this;
+
+    while (currentSuite !== undefined) {
+      hooksToRun = currentSuite.beforeEachHooks.concat(hooksToRun); // take the current hooks and put them at the beginning of the array
+
+      currentSuite = currentSuite.parentSuite;
+    }
+
+    hooksToRun.forEach((beforeEachHook) => {
+      beforeEachHook.fn.call(beforeEachHook);
+    });
+  }
+
+  /**
+   * afterEach hooks run innwards-out. Meaning that afterEach hooks
+   * at the current level execute first and then bubble upwards
+   * to the root. This is different than beforeEach hooks
+   */
+  runAllAfterEach() {
+    var hooksToRun = [];
+    var currentSuite = this;
+
+    while (currentSuite !== undefined) {
+      currentSuite.afterEachHooks.forEach((afterEachHook) => {
+        afterEachHook.fn.call(afterEachHook);
+      });
+
+      currentSuite = currentSuite.parentSuite;
+    }
   }
 }
 

@@ -11,6 +11,7 @@ class Test {
     // Assign values from props
     this.title = props.title;
     this.fn = props.fn;
+    this.parentSuite = props.parentSuite;
     this.isAsync = props.fn.length === 1 // see if the done function was specified in the function's arguments
 
     // Setup default values
@@ -20,18 +21,11 @@ class Test {
 
   runTest() {
     var testAlreadyCompleted = this.currentState === STATES.TEST_COMPLETED;
-    var testInProgress = this.currentState === STATES.TEST_STARTED;
-
     if (testAlreadyCompleted) {
-      throw "3edfr5t: Test shouldn't be called since its been marked as completed";
+      throw "edfr5t: Test shouldn't be called since its been marked as completed";
     }
 
-    // Create the done function
-    var done = () => {
-      this.testTimer = new Date().getTime() - this.testTimer; // calculate the test's duration against the start time
-      this.currentState = STATES.TEST_COMPLETED;
-    }
-
+    var testInProgress = this.currentState === STATES.TEST_STARTED;
     if (testInProgress) {
       // Because of how the run loop works, the run test command will be called
       // on every setInterval so for long-running tests, this command will
@@ -40,28 +34,37 @@ class Test {
 
       if (currentDuration >= 6000) {
         console.log("3wsed: Test took to long. Marking as done");
-        done();
+        this.markTestAsCompleted();
       }
 
-      return;
+      return; // return early if test in progress
     }
-
-    console.log(this.title);
 
     this.currentState = STATES.TEST_STARTED;
     this.testTimer = new Date().getTime(); // start the timer
 
+    this.parentSuite.runAllBeforeEach();
+
+    console.log(this.title);
+
     try {
       if (this.isAsync) {
-        this.fn.call(this, done);
+        this.fn.call(this, this.markTestAsCompleted);
       } else {
         this.fn.call(this);
-        done();
+        this.markTestAsCompleted();
       }
     } catch (err) {
       console.log(err.message);
-      done();
+      this.markTestAsCompleted();
+    } finally {
+      this.parentSuite.runAllAfterEach();
     }
+  }
+
+  markTestAsCompleted() {
+    this.testTimer = new Date().getTime() - this.testTimer; // calculate the test's duration against the start time
+    this.currentState = STATES.TEST_COMPLETED;
   }
 }
 

@@ -6,6 +6,8 @@ var Hook = require('./hook');
 var EventEmitter = require("events").EventEmitter;
 global.ee = new EventEmitter();
 
+// A queue of suites to run
+// suiteQueue[0] always points to the activeSuite
 var suiteQueue = [];
 
 ee.on('newSuiteDidBecomeActive', function(suite) {
@@ -19,7 +21,8 @@ ee.on('suiteDidFinish', function(suite) {
 global.describe = function(title, fn) {
   var suite = new Suite({
     title: title,
-    fn: fn
+    fn: fn,
+    parentSuite: suiteQueue[0]
   });
 
   suiteQueue[0].suites.push(suite);
@@ -28,7 +31,8 @@ global.describe = function(title, fn) {
 global.it = function(title, fn) {
   var test = new Test({
     title: title,
-    fn: fn
+    fn: fn,
+    parentSuite: suiteQueue[0]
   });
 
   suiteQueue[0].tests.push(test);
@@ -74,7 +78,8 @@ class Runner {
   constructor(props) {
     // Manually construct the root suite to kick things off
     var rootSuite = new Suite({
-      title: 'root',
+      title: '',
+      parentSuite: undefined, // undefined since we're root
       fn: () => {
         // Go through the list of files and require them
         props.files.forEach((file) => {
@@ -95,7 +100,7 @@ class Runner {
     var allSuitesHaveCompleted = suiteQueue[0] === undefined;
 
     if (!allSuitesHaveCompleted) {
-      suiteQueue[0].tickTock.call(suiteQueue[0]);
+      suiteQueue[0].runLoop.call(suiteQueue[0]);
     } else {
       console.log("All tests have completed");
       clearInterval(this.refreshIntervalId); // all done. Stop
