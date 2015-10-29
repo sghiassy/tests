@@ -59,6 +59,8 @@ class Suite {
     // and sub-suites that need to be called;
     // Don't like this, because it relies on early exits above :(
     this.allTestsAndSuitesHaveCompleted = true;
+
+    ee.emit('suiteDidFinish', this);
   }
 }
 

@@ -5,11 +5,14 @@ var Test = require('./test');
 var EventEmitter = require("events").EventEmitter;
 global.ee = new EventEmitter();
 
-var suites = [];
-var activeSuite;
+var activeSuite = [];
 
 ee.on('newSuiteDidBecomeActive', function(suite) {
-  activeSuite = suite;
+  activeSuite.push(suite);
+});
+
+ee.on('suiteDidFinish', function(suite) {
+  activeSuite.pop();
 });
 
 global.describe = function(title, fn) {
@@ -18,7 +21,7 @@ global.describe = function(title, fn) {
     fn: fn
   });
 
-  activeSuite.suites.push(suite);
+  activeSuite[0].suites.push(suite);
 };
 
 global.it = function(title, fn) {
@@ -27,7 +30,7 @@ global.it = function(title, fn) {
     fn: fn
   });
 
-  activeSuite.tests.push(test);
+  activeSuite[0].tests.push(test);
 };
 
 class Runner {
@@ -43,15 +46,22 @@ class Runner {
       }
     });
 
-    activeSuite = rootSuite;
+    activeSuite.push(rootSuite);
 
-    setInterval(() => {
+    this.refreshIntervalId = setInterval(() => {
       this.runLoop(); // Kick off the run loop
     }, 500);
   }
 
   runLoop() {
-    activeSuite.tickTock.call(activeSuite);
+    var finishedRunningAllSuites = activeSuite[0] === undefined;
+
+    if (!finishedRunningAllSuites) {
+      activeSuite[0].tickTock.call(activeSuite[0]);
+    } else {
+      console.log("All tests have completed");
+      clearInterval(this.refreshIntervalId); // all done. Stop
+    }
   }
 }
 
