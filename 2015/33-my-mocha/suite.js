@@ -75,11 +75,20 @@ class Suite {
     }
 
     // If we get to this point in the code, it means we have no more sub-tests
-    // and sub-suites that need to be called;
+    // and sub-suites that need to be called.
     // Don't like this, because it relies on early exits above :(
-    this.currentState = STATES.SUITE_COMPLETED;
+    // I hate this type of early exit control flow
+    this.tearDown();
+  }
+
+  tearDown() {
+    this.afterHooks.forEach((afterHook) => {
+      afterHook.fn.call(afterHook);
+    });
 
     ee.emit('suiteDidFinish', this);
+
+    this.currentState = STATES.SUITE_COMPLETED;
   }
 }
 
