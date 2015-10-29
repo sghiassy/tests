@@ -3,10 +3,10 @@
 var Test = require('./test');
 
 var STATES = {
-  NOT_STARTED: 0.1,     // using floats instead of ints so that
+  NOT_STARTED: 0.1, // using floats instead of ints so that
   SETUP_COMPLETED: 0.2, // these state "enums" don't accidently
   SUITE_COMPLETED: 0.3, // get confused for test states. Tests and
-                        // Suites have different states
+  // Suites have different states
 }
 
 class Suite {
@@ -96,6 +96,11 @@ class Suite {
     this.currentState = STATES.SUITE_COMPLETED;
   }
 
+  /**
+   * beforeEach hooks run outwards-in. Meaning that beforeEach hooks
+   * at the root execute first and then cascade in towards
+   * child suites. This is different than afterEach hooks
+   */
   runAllBeforeEach(currentSuite) {
     var hooksToRun = [];
 
@@ -105,21 +110,28 @@ class Suite {
       currentSuite = currentSuite.parentSuite;
     }
 
-    hooksToRun.forEach((beforeEachHook)=>{
+    hooksToRun.forEach((beforeEachHook) => {
       beforeEachHook.fn.call(beforeEachHook);
     });
   }
 
+  /**
+   * afterEach hooks run innwards-out. Meaning that afterEach hooks
+   * at the current level execute first and then bubble upwards
+   * to the root. This is different than beforeEach hooks
+   */
   runAllAfterEach(currentSuite) {
     var hooksToRun = [];
 
     while (currentSuite !== undefined) {
-      hooksToRun = currentSuite.afterEachHooks.concat(hooksToRun);
+      currentSuite.afterEachHooks.forEach((afterEachHook) => {
+        afterEachHook.fn.call(afterEachHook);
+      });
 
       currentSuite = currentSuite.parentSuite;
     }
 
-    hooksToRun.forEach((afterEachHook)=>{
+    hooksToRun.forEach((afterEachHook) => {
       afterEachHook.fn.call(afterEachHook);
     });
   }
