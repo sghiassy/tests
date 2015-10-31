@@ -106,8 +106,9 @@ describe("root", function() {
         amount.should.equal(421143.04588528833);
       });
 
-      it("nestedSuite test3", function() {
+      it("nestedSuite test3", function(done) {
         amount.should.equal(416985.8658636104);
+        setTimeout(done, 2000);
       });
 
       describe("nestedNestedSuite", function() {
