@@ -16,9 +16,16 @@ function testPromise() {
       return "p1.then is returning"
     }).then(function(val) {
       console.log('chained promise1', val);
-       return "p1.then is returning for the second chain"
+      var p2 = new Promise(function(resolve, reject) {
+      console.log('Promise started');
+
+      setTimeout(function() {
+        resolve('the settimeout function completed222');
+      }, 5000);
+    });
+    return p2;
     }).then(function(val) {
-      console.log('chained promise2', val);
+      console.log('I won\'t be called until the second promise is fullfilled', val);
     }).catch(function(reason) {
       console.log('Handle rejected promise ('+reason+') here.');
     });
