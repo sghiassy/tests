@@ -13,14 +13,14 @@ function testPromise() {
 
     p1.then(function(val) {
       console.log('Promise fulfilled with', val);
-      return "p1.then is returning"
+      return true
     }).then(function(val) {
       console.log('chained promise1', val);
       var p2 = new Promise(function(resolve, reject) {
       console.log('Promise started');
 
       setTimeout(function() {
-        resolve('the settimeout function completed222');
+        reject('the settimeout function completed222');
       }, 5000);
     });
     return p2;
